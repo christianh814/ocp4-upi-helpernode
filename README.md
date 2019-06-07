@@ -11,9 +11,7 @@ This assumes the following
 
 ## Prereqs
 
-Install a CentOS 7 server
-
-Recommended Setup:
+Install a CentOS 7 server with this recommended setup:
 
 * 4 vCPUs
 * 4 GB of RAM
