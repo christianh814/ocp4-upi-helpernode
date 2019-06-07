@@ -71,6 +71,7 @@
       - 6443/udp
       - 22623/tcp
       - 22623/udp
+      - 9000/tcp
 
   - name: Best effort SELinux repair - DNS
     shell: "restorecon -vR /var/named || true"
