@@ -1,7 +1,7 @@
 #!/bin/bash
 domain=$1
 clusterid=$2
-if [[ $* -eq 0 ]]; then
+if [[ ${#domain} -eq 0 -o ${#clusterid} -eq 0 ]]; then
   echo "Usage: $(basename $0) <domain> <clusterid>"
   exit
 fi
