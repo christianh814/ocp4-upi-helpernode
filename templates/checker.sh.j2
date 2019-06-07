@@ -1,0 +1,41 @@
+#!/bin/bash
+##
+echo "==============="
+echo "DNS for Masters"
+echo "==============="
+{% for m in masters %}
+echo ""
+echo "{{ m.name }}.{{ dns.clusterid }}.{{ dns.domain }}"
+echo "-------------------------------------------------"
+echo "IP: $(dig @localhost {{ m.name }}.{{ dns.clusterid }}.{{ dns.domain }} +short)"
+echo "Reverse: $(dig @localhost -x $(dig @localhost {{ m.name }}.{{ dns.clusterid }}.{{ dns.domain }} +short) +short)"
+{% endfor %}
+echo "==============="
+echo "DNS for Workers"
+echo "==============="
+{% for w in workers %}
+echo ""
+echo "{{ w.name }}.{{ dns.clusterid }}.{{ dns.domain }}"
+echo "-------------------------------------------------"
+echo "IP: $(dig @localhost {{ w.name }}.{{ dns.clusterid }}.{{ dns.domain }} +short)"
+echo "Reverse: $(dig @localhost -x $(dig @localhost {{ w.name }}.{{ dns.clusterid }}.{{ dns.domain }} +short) +short)"
+{% endfor %}
+echo "============"
+echo "DNS for ETCD"
+echo "============"
+for i in etcd-{0..2}
+do
+  dig @localhost ${i}.{{ dns.clusterid }}.{{ dns.domain }} +short
+done
+echo "============"
+echo "SRV for ETCD"
+echo "============"
+dig @localhost _etcd-server-ssl._tcp.{{ dns.clusterid }}.{{ dns.domain }} SRV +short
+echo ""
+
+cat <<EOF
+This server should also be used as the install node. Apache is running on http://{{ helper.ipaddr }}:8080 You can put your openshift-install artifacts (bios images and ignition files) in /var/www/html
+
+HAProxy stats are on http://{{ helper.ipaddr }}:9000 and you should use it to monitor the install when you start.
+EOF
+##

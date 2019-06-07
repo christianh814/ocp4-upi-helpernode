@@ -99,10 +99,18 @@
       src: ../templates/resolv.conf.j2
       dest: /etc/resolv.conf
 
-  - name: Checking DNS zonefile
-    shell: "sed -n '14,$p' /var/named/zonefile.db"
-    register: zonefilecontents
+  - name: Copy info script over
+    template:
+      src: ../templates/checker.sh.j2
+      dest: /usr/local/bin/checker.sh
+      owner: root
+      group: root
+      mode: 0555
 
-  - name: DNS Configuration
+  - name: Information about the install
+    shell: "/usr/local/bin/checker.sh"
+    register: infoscript
+
+  - name:  Information about this install
     debug:
-      msg: "{{ zonefilecontents.stdout.split('\n') }}"
+      msg: "{{ infoscript.stdout.split('\n') }}"
