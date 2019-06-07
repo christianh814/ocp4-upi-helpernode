@@ -11,7 +11,15 @@ This assumes the following
 
 ## Prereqs
 
-Install a CentOS 7 server with 4 vCPUs, 4 GB of RAM, and 50GB HD...then....
+Install a CentOS 7 server with
+
+Recommended Setup:
+
+* 4 vCPUs
+* 4 GB of RAM
+* 50GB HD
+
+Then prepare for the install
 
 ```
 yum -y install ansible git
