@@ -11,8 +11,8 @@ dhcp:
   router: "172.16.254.1"
   bcast: "172.16.254.255"
   netmask: "255.255.255.0"
-  poolstart: "172.15.254.10"
-  poolend: "172.15.254.30"
+  poolstart: "172.16.254.10"
+  poolend: "172.16.254.30"
   ipid: "172.16.254.0"
   netmaskid: "255.255.255.0"
 bootstrap:
