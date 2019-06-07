@@ -1,5 +1,5 @@
 ---
-# tasks file for tester
+# Setup OCP4 Helper Node
 
 - hosts: all
   tasks:
@@ -12,6 +12,7 @@
         - bind-utils
         - haproxy
         - httpd
+        - vim
         - bash-completion
         - libselinux-python
       state: present
