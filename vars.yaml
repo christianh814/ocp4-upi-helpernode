@@ -1,0 +1,42 @@
+---
+ocp4pullsercret: '{"auths":{"cloud.openshift.com":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K2NocmlzdGlhbmhlcm5hbmRlenJlZGhhdGNvbTFkd2kwejR4eGhwYXNoaGRmbXp4ZmNiemNkbTpSTERGVDc3QUFXSExRMEs0S0I1WEhSV1NHR1AwSVQzSE5EUFpUTE9FTVk0RVU5RzdVR0gwWTlGQVVGSlBGNVBD","email":"christian.hernandez@redhat.com"},"quay.io":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K2NocmlzdGlhbmhlcm5hbmRlenJlZGhhdGNvbTFkd2kwejR4eGhwYXNoaGRmbXp4ZmNiemNkbTpSTERGVDc3QUFXSExRMEs0S0I1WEhSV1NHR1AwSVQzSE5EUFpUTE9FTVk0RVU5RzdVR0gwWTlGQVVGSlBGNVBD","email":"christian.hernandez@redhat.com"},"registry.connect.redhat.com":{"auth":"NzM5NzgwN3x1aGMtMUR3aTB6NHhYSHBBc2hoZGZNWnhmQ2J6Q2RtOmV5SmhiR2NpT2lKU1V6VXhNaUo5LmV5SnpkV0lpT2lKbU9XTm1aall5T0dRMk9ERTBZVEpsWWpoak0yTmlOVFExTUdVME1tUmtZU0o5LnVnZUVoS1B2U0NxNDQ1aVkwWkNoVHRrc1d4VjMxSm9fNUpMUlV2VEdvSHpnNG5GRm4zb1dZdS0wbWVQbVk1dkEzQWdGdlFoNzFFbnJ1MmJaTzZPSnoyZHlCc3hMNGVURUVnOURjWjkxSDMtc0txUXBJR3cwVmYyYmdTOTlZckppU2NMRDB3SWFVWDZLbC02cml6eGNWWXRsVWJibU52ZWV4bkZkNW9CVVVMaGMxVjEwT3FiRTZobUN3Q3liU1YxNlNicUs0N2JoNlNCWjZzOXY1VjQ3Z0VkSmpIenA0aWQyTm11Z0tLUTBqT1RQTWFCSDFadzB2aHhGbFFvT3MwcjJleWlxcUNydXlOTU9zMGxTZHlhTGpRTmtlMTRCeFVVa0Vlc2pwcHBIbmJDSUo3cjQ0Z1E1ZjZROTBocWJueXI4bkV3TnhJcEF5cUM1dHhWUVdLdzRBZVQzRkZPZzZEQlpBZ1k5UDFHdUl6dm42UmM5Tkw3RlMxMV9yd3pRUTVPNzRENXZZQVFpS2kzOVRSS3psR1J2VzlZXzMyTHg3WG51NFhBbDRGaUNXbGxmM0ZiZGdBSG1RS05nRlc0b1FEM3BSZmJjakdyYTE4QUhmemp6R0xpZjRQSmdiNHkxOXV1eFdBOGd5UzJkTVhPY2RYYzN6YlVKa3dVUnRlMUZBcks0akRnZkpESmRDRDVtUXhDVGZZUG1xMHJ3UkVhRnN2OVhXYjl4RnJuYlFCbTFvTGdYeVEzckwwUjcybkZyaVVQdVg4bzd0Y0Q0M19zNk15WmdDYzBBV3lDVWRxaTBVR2trX1FTVzVCX3IzQ1otSkppMmRJU1RsUnNCcTFmV1l1UGRUNVpucTl3V0ZaUEVDWGZVSWI2RVJHTE9YQk9FX0pSbUxZWDRqdl8xejFz","email":"christian.hernandez@redhat.com"},"registry.redhat.io":{"auth":"NzM5NzgwN3x1aGMtMUR3aTB6NHhYSHBBc2hoZGZNWnhmQ2J6Q2RtOmV5SmhiR2NpT2lKU1V6VXhNaUo5LmV5SnpkV0lpT2lKbU9XTm1aall5T0dRMk9ERTBZVEpsWWpoak0yTmlOVFExTUdVME1tUmtZU0o5LnVnZUVoS1B2U0NxNDQ1aVkwWkNoVHRrc1d4VjMxSm9fNUpMUlV2VEdvSHpnNG5GRm4zb1dZdS0wbWVQbVk1dkEzQWdGdlFoNzFFbnJ1MmJaTzZPSnoyZHlCc3hMNGVURUVnOURjWjkxSDMtc0txUXBJR3cwVmYyYmdTOTlZckppU2NMRDB3SWFVWDZLbC02cml6eGNWWXRsVWJibU52ZWV4bkZkNW9CVVVMaGMxVjEwT3FiRTZobUN3Q3liU1YxNlNicUs0N2JoNlNCWjZzOXY1VjQ3Z0VkSmpIenA0aWQyTm11Z0tLUTBqT1RQTWFCSDFadzB2aHhGbFFvT3MwcjJleWlxcUNydXlOTU9zMGxTZHlhTGpRTmtlMTRCeFVVa0Vlc2pwcHBIbmJDSUo3cjQ0Z1E1ZjZROTBocWJueXI4bkV3TnhJcEF5cUM1dHhWUVdLdzRBZVQzRkZPZzZEQlpBZ1k5UDFHdUl6dm42UmM5Tkw3RlMxMV9yd3pRUTVPNzRENXZZQVFpS2kzOVRSS3psR1J2VzlZXzMyTHg3WG51NFhBbDRGaUNXbGxmM0ZiZGdBSG1RS05nRlc0b1FEM3BSZmJjakdyYTE4QUhmemp6R0xpZjRQSmdiNHkxOXV1eFdBOGd5UzJkTVhPY2RYYzN6YlVKa3dVUnRlMUZBcks0akRnZkpESmRDRDVtUXhDVGZZUG1xMHJ3UkVhRnN2OVhXYjl4RnJuYlFCbTFvTGdYeVEzckwwUjcybkZyaVVQdVg4bzd0Y0Q0M19zNk15WmdDYzBBV3lDVWRxaTBVR2trX1FTVzVCX3IzQ1otSkppMmRJU1RsUnNCcTFmV1l1UGRUNVpucTl3V0ZaUEVDWGZVSWI2RVJHTE9YQk9FX0pSbUxZWDRqdl8xejFz","email":"christian.hernandez@redhat.com"}}}'
+helper:
+  name: "helper"
+  ipaddr: "172.16.254.254"
+dns:
+  domain: "mydomain.com"
+  clusterid: "ocp4"
+  forwarder1: "8.8.8.8"
+  forwarder2: "8.8.4.4"
+dhcp:
+  router: "172.16.254.1"
+  bcast: "172.16.254.255"
+  netmask: "255.255.255.0"
+  poolstart: "172.15.254.10"
+  poolend: "172.15.254.30"
+  ipid: "172.16.254.0"
+  netmaskid: "255.255.255.0"
+bootstrap:
+  name: "boostrap"
+  ipaddr: "172.16.254.20"
+  macaddr: "48:89:e7:40:55:e7"
+masters:
+  - name: "m1"
+    ipaddr: "172.16.254.21"
+    macaddr: "1a:2c:be:ff:66:99"
+  - name: "m2"
+    ipaddr: "172.16.254.22"
+    macaddr: "ff:aa:bb:11:22:33"
+  - name: "m3"
+    ipaddr: "172.16.254.23"
+    macaddr: "cc:dd:ee:66:55:44"
+workers:
+  - name: "w1"
+    ipaddr: "172.16.254.11"
+    macaddr: "ee:27:47:33:66:01"
+  - name: "w2"
+    ipaddr: "172.16.254.12"
+    macaddr: "09:01:08:13:55:ee"
+  - name: "w3"
+    ipaddr: "172.16.254.13"
+    macaddr: "bb:04:14:55:85:77"

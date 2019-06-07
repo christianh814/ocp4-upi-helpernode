@@ -1,0 +1,93 @@
+---
+# tasks file for tester
+
+- hosts: all
+  tasks:
+
+  - name: Install needed packages
+    yum:
+      name:
+        - dhcp
+        - bind
+        - bind-utils
+        - haproxy
+        - httpd
+        - bash-completion
+        - libselinux-python
+      state: present
+
+  - name: Write out dhcp file
+    template:
+      src: ../templates/dhcpd.conf.j2
+      dest: /etc/dhcp/dhcpd.conf
+
+  - name: Write out named file
+    template:
+      src: ../templates/named.conf.j2
+      dest: /etc/named.conf
+
+  - name: Set zone serial number
+    command: "date +%Y%m%d00"
+    register: dymanicserialnumber
+
+  - name: Setting serial number as a fact
+    set_fact:
+      serialnumber: "{{ dymanicserialnumber.stdout }}"
+  
+  - name: Write out "{{ dns.domain }}" zone file
+    template:
+      src: ../templates/zonefile.j2
+      dest: /var/named/zonefile.db
+  
+  - name: Write out reverse zone file
+    template:
+      src: ../templates/reverse.j2
+      dest: /var/named/reverse.db
+  
+  - name: Write out haproxy config file
+    template:
+      src: ../templates/haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+
+  - name: Copy httpd conf file
+    copy:
+      src: ../files/httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
+
+  - name: Open up firewall ports
+    firewalld:
+      permanent: yes
+      immediate: yes
+      state: enabled
+      port: "{{ item }}"
+    with_items:
+      - 67/udp
+      - 53/tcp
+      - 53/udp
+      - 443/tcp
+      - 80/tcp
+      - 8080/tcp
+      - 6443/tcp
+      - 6443/udp
+      - 22623/tcp
+      - 22623/udp
+
+  - name: Best effort SELinux repair - DNS
+    shell: "restorecon -vR /var/named || true"
+
+  - name: SEBool allow haproxy connect any port
+    seboolean:
+      name: haproxy_connect_any
+      state: yes
+      persistent: yes
+
+  - name: Starting services
+    service:
+      name: "{{ item }}"
+      enabled: yes
+      state: started
+    with_items:
+      - dhcpd
+      - named
+      - haproxy
+      - httpd
