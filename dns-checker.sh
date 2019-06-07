@@ -9,7 +9,7 @@ fi
 echo "============="
 echo "Foward lookup"
 echo "============="
-for name in m{1..3} w{1..3} boostrap etcd-{0..2} foo.apps api api-int
+for name in etcd-{0..2} foo.apps api api-int
 do
   echo -n "${name}.${clusterid}.${domain}				"
   dig @localhost ${name}.${clusterid}.${domain} +short
@@ -29,3 +29,6 @@ dig @localhost _etcd-server-ssl._tcp.${clusterid}.${domain} SRV +short
 echo ""
 ##
 ##
+echo "================="
+echo "Master DNS config"
+echo "================="

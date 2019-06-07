@@ -93,3 +93,16 @@
       - named
       - haproxy
       - httpd
+
+  - name: Set the local resolv.conf file
+    template:
+      src: ../templates/resolv.conf.j2
+      dest: /etc/resolv.conf
+
+  - name: Checking DNS zonefile
+    shell: "sed -n '14,$p' /var/named/zonefile.db"
+    register: zonefilecontents
+
+  - name: DNS Configuration
+    debug:
+      msg: "{{ zonefilecontents.stdout.split('\n') }}"

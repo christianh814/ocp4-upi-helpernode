@@ -12,6 +12,9 @@ $TTL 1W
 ns1	IN	A	{{ helper.ipaddr }}
 smtp	IN	A	{{ helper.ipaddr }}
 ;
+{{ helper.name }}	IN	A	{{ helper.ipaddr }}
+{{ helper.name }}.{{ dns.clusterid }}	IN	A	{{ helper.ipaddr }}
+;
 ; The api points to the IP of your load balancer
 api.{{ dns.clusterid }}		IN	A	{{ helper.ipaddr }}
 api-int.{{ dns.clusterid }}		IN	A	{{ helper.ipaddr }}
