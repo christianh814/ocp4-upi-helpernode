@@ -27,7 +27,7 @@ cd ocp4-upi-helpernode
 
 ## Setup your Environment Vars
 
-Inside that dir there is a `vars.yaml` ... **__modify it__** to match your network (the example one assumes a `/24`)
+Inside that dir there is a [vars.yaml](./vars.yaml) file ... **__modify it__** to match your network (the example one assumes a `/24`)
 
 
 ## Run the playbook
