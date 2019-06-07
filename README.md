@@ -11,7 +11,7 @@ This assumes the following
 
 ## Prereqs
 
-Install a CentOS 7 server with
+Install a CentOS 7 server
 
 Recommended Setup:
 
