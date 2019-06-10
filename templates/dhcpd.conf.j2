@@ -22,5 +22,9 @@ max-lease-time 14400;
 {% endfor %}
 		# this will not give out addresses to hosts not listed above
 		deny unknown-clients;
+
+		# this is PXE specific  
+		filename "pxelinux.0";  
+		next-server {{ helper.ipaddr }};
      	}
 }
