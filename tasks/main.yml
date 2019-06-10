@@ -66,6 +66,12 @@
       - /var/www/html/install
       - /var/www/html/ignition
 
+  - name: Get OCP4 installer initramfs
+    get_url:
+      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-metal-bios.raw.gz
+      dest: /var/www/html/install/bios.raw.gz
+      mode: 0555
+
   - name: Open up firewall ports
     firewalld:
       permanent: yes
@@ -94,7 +100,7 @@
 
   - name: Create TFTP dirs
     file:
-      path: /var/lib/tftpboot/pxelinux.cfg/
+      path: "{{ items }}"
       state: directory
       mode: 0755
     with_items:
@@ -109,6 +115,18 @@
 
   - name: Copy over files needed for TFTP
     shell: "cp -a /usr/share/syslinux/* /var/lib/tftpboot"
+
+  - name: Get OCP4 installer initramfs
+    get_url:
+      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-installer-initramfs.img
+      dest: /var/lib/tftpboot/rhcos/initramfs.img
+      mode: 0555
+
+  - name: Get OCP4 installer kernel
+    get_url:
+      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-installer-kernel
+      dest: /var/lib/tftpboot/rhcos/kernel
+      mode: 0555
 
   - name: Starting services
     service:
