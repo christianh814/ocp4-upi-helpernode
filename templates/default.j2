@@ -1,0 +1,16 @@
+default menu.c32   
+ prompt 0   
+ timeout 300   
+ ONTIMEOUT   
+ menu title ######## PXE Boot Menu ########  
+ label 1   
+ menu label ^1) Boot from local drive   
+ localboot 0x00  
+ label 2  
+ menu label ^2) Install CentOS 7 using local Repo with Kickstart   
+ kernel centos7/vmlinuz   
+ append initrd=centos7/initrd.img ks=http://web01.archyslife.lan/ks-minimal.cfg inst.stage2=nfs:172.31.10.10:/images/CentOS-1708   
+ label 3  
+ menu label ^3) Install CentOS 7 using local Repo without Kickstart   
+ kernel centos7/vmlinuz   
+ append initrd=centos7/initrd.img inst.stage2=nfs:172.31.10.10:/images/CentOS-1708

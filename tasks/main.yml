@@ -57,6 +57,15 @@
       src: ../files/httpd.conf
       dest: /etc/httpd/conf/httpd.conf
 
+  - name: Create apache directories for installing
+    file:
+      path: "{{ item }}"
+      state: directory
+      mode: 755
+    with_items:
+      - /var/www/html/install
+      - /var/www/html/ignition
+
   - name: Open up firewall ports
     firewalld:
       permanent: yes
@@ -79,6 +88,9 @@
 
   - name: Best effort SELinux repair - DNS
     shell: "restorecon -vR /var/named || true"
+
+  - name: Best effort SELinux repair - Apache
+    shell: "restorecon -vR /var/www/html || true"
 
   - name: Create TFTP conifg dir
     file:
