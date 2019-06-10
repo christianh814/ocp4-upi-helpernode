@@ -147,6 +147,7 @@
       - named
       - haproxy
       - httpd
+      - tftp
 
   - name: Set the local resolv.conf file
     template:
