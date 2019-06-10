@@ -43,7 +43,7 @@ ansible-playbook -e @vars.yaml tasks/main.yml
 Once it's ran, check if the DNS is okay with the checker script
 
 ```
-./dns-checker.sh  <domain> <clusterid>
+/usr/local/bin/checker.sh
 ```
 
 ## Install OpenShift 4 UPI
