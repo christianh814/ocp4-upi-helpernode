@@ -61,7 +61,7 @@
     file:
       path: "{{ item }}"
       state: directory
-      mode: 755
+      mode: 0755
     with_items:
       - /var/www/html/install
       - /var/www/html/ignition
@@ -96,7 +96,7 @@
     file:
       path: /var/lib/tftpboot/pxelinux.cfg/
       state: directory
-      mode: 755
+      mode: 0755
     with_items:
       - /var/lib/tftpboot/pxelinux.cfg
       - /var/lib/tftpboot/rhcos
