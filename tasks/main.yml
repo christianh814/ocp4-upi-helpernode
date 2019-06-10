@@ -131,6 +131,11 @@
       dest: /var/lib/tftpboot/rhcos/kernel
       mode: 0555
 
+  - name: Set the default tftp file
+    template:
+      src: ../templates/default.j2
+      dest: /var/lib/tftpboot/pxelinux.cfg/default
+
   - name: Starting services
     service:
       name: "{{ item }}"
