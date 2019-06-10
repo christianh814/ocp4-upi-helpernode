@@ -92,11 +92,14 @@
   - name: Best effort SELinux repair - Apache
     shell: "restorecon -vR /var/www/html || true"
 
-  - name: Create TFTP conifg dir
+  - name: Create TFTP dirs
     file:
       path: /var/lib/tftpboot/pxelinux.cfg/
       state: directory
       mode: 755
+    with_items:
+      - /var/lib/tftpboot/pxelinux.cfg
+      - /var/lib/tftpboot/rhcos
 
   - name: SEBool allow haproxy connect any port
     seboolean:
