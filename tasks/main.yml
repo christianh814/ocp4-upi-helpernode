@@ -107,10 +107,7 @@
       group: root
       mode: 0555
 
-  - name: Information about the install
-    shell: "/usr/local/bin/checker.sh"
-    register: infoscript
-
   - name:  Information about this install
     debug:
-      msg: "{{ infoscript.stdout.split('\n') }}"
+      msg:
+        - "Please run /usr/local/bin/checker.sh for DNS information"
