@@ -135,6 +135,7 @@
     template:
       src: ../templates/default.j2
       dest: /var/lib/tftpboot/pxelinux.cfg/default
+      mode: 0555
 
   - name: Starting services
     service:
