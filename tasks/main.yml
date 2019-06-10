@@ -185,7 +185,7 @@
 
   - name: Removing files that are not needed
     file:
-      src: /usr/local/bin/README.md
+      path: /usr/local/bin/README.md
       state: absent
 
   - name:  Information about this install
