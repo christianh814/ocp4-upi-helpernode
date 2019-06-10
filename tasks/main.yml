@@ -85,6 +85,9 @@
       state: yes
       persistent: yes
 
+  - name: Copy over files needed for TFTP
+    shell: "cp -a /usr/share/syslinux/* /var/lib/tftpboot"
+
   - name: Starting services
     service:
       name: "{{ item }}"
