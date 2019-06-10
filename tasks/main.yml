@@ -75,9 +75,16 @@
       - 22623/tcp
       - 22623/udp
       - 9000/tcp
+      - 69/udp
 
   - name: Best effort SELinux repair - DNS
     shell: "restorecon -vR /var/named || true"
+
+  - name: Create TFTP conifg dir
+    file:
+      path: /var/lib/tftpboot/pxelinux.cfg/
+      state: directory
+      mode: 755
 
   - name: SEBool allow haproxy connect any port
     seboolean:
