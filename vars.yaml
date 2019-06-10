@@ -1,4 +1,5 @@
 ---
+disk: vda
 helper:
   name: "helper"
   ipaddr: "172.16.254.254"
