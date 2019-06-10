@@ -36,6 +36,16 @@ echo ""
 cat <<EOF
 This server should also be used as the install node. Apache is running on http://{{ helper.ipaddr }}:8080 You can put your openshift-install artifacts (bios images and ignition files) in /var/www/html
 
+Quickstart Notes:
+	mkdir ~/install
+	cd ~/install
+	vi install-config.yaml
+	openshift-install create ignition-configs
+	cp *.ign /var/www/html/
+	restorecon -vR /var/www/html/
+
+(See https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html for more details)
+
 HAProxy stats are on http://{{ helper.ipaddr }}:9000 and you should use it to monitor the install when you start.
 EOF
 ##

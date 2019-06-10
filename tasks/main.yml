@@ -192,4 +192,4 @@
   - name:  Information about this install
     debug:
       msg:
-        - "Please run /usr/local/bin/checker.sh for DNS information"
+        - "Please run /usr/local/bin/checker.sh for information"
