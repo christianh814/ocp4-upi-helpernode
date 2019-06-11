@@ -17,7 +17,7 @@ dhcp:
   ipid: "172.16.254.0"
   netmaskid: "255.255.255.0"
 bootstrap:
-  name: "boostrap"
+  name: "bootstrap"
   ipaddr: "172.16.254.20"
   macaddr: "48:89:e7:40:55:e7"
 masters:
