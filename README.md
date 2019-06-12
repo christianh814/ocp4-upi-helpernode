@@ -15,7 +15,7 @@ Install a CentOS 7 server with this recommended setup:
 
 * 4 vCPUs
 * 4 GB of RAM
-* 50GB HD
+* 30GB HD
 
 Then prepare for the install
 
