@@ -4,7 +4,7 @@ This assumes the following
 
 1. You're on a Network that has access to the internet
 2. The network you're on does NOT have DHCP
-3. The helpernode will be your LB/DHCP/DNS and HTTPD server
+3. The helpernode will be your LB/DHCP/PXE/DNS and HTTPD server
 4. You still have to do the OpenShift Install steps by hand (this just sets up the node to help you)
 5. I used CentOS 7
 6. You will be running the `openshift-install` command from this helpernode
