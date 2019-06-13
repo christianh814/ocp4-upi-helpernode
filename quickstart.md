@@ -198,7 +198,16 @@ openshift-install wait-for bootstrap-complete --log-level debug
 Once you see this message; you can continue.
 
 ```
+DEBUG OpenShift Installer v4.1.0-201905212232-dirty 
+DEBUG Built from commit 71d8978039726046929729ad15302973e3da18ce 
+INFO Waiting up to 30m0s for the Kubernetes API at https://api.ocp4.example.com:6443... 
+INFO API v1.13.4+838b4fa up                       
+INFO Waiting up to 30m0s for bootstrapping to complete... 
+DEBUG Bootstrap status: complete                   
+INFO It is now safe to remove the bootstrap resources
 ```
+
+You can delete the bootstrap server now.
 
 ## Finish Install
 
@@ -211,7 +220,7 @@ export KUBECONFIG=/root/ocp4/auth/kubeconfig
 Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal)
 
 ```
-oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}
+oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
 ```
 
 Watch your CSRs. These can take some time; go get come coffee or grab some lunch. You'll see your nodes' CSRs in "Pending" (unless they were "auto approved", if so, you can jump to the `wait-for install-complete` step)
@@ -226,6 +235,11 @@ To approve them all in one shot...
 oc get csr -ojson | jq -r '.items[] | select(.status == {} ) | .metadata.name' | xargs oc adm certificate approve
 ```
 
+Check for the approval status (it should say "Approved,Issued")
+
+```
+oc get csr | grep 'system:node'
+```
 
 Once Approved; finish up the install process
 
