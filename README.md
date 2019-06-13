@@ -9,6 +9,8 @@ This assumes the following
 5. I used CentOS 7
 6. You will be running the `openshift-install` command from this helpernode
 
+You can visit the [quickstart](quickstart.md) to...quickly start :)
+
 ## Prereqs
 
 Install a CentOS 7 server with this recommended setup:
@@ -16,6 +18,7 @@ Install a CentOS 7 server with this recommended setup:
 * 4 vCPUs
 * 4 GB of RAM
 * 30GB HD
+* Static IP
 
 Then prepare for the install
 
