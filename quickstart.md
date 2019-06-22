@@ -81,6 +81,12 @@ done
 
 ## Prepare the Helper Node
 
+After the helper node is installed; login to it
+
+```
+ssh root@192.168.7.77
+```
+
 Install `ansible` and `git` and clone this repo
 
 ```
