@@ -174,13 +174,13 @@
 
   - name: Unarchiving OC clients
     unarchive:
-      src: /usr/local/src/openshift-client-linux-4.1.2.tar.gz
+      src: /usr/local/src/openshift-client-linux-4.1.3.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
   - name: Unarchiving OpenShift Installer
     unarchive:
-      src: /usr/local/src/openshift-install-linux-4.1.2.tar.gz
+      src: /usr/local/src/openshift-install-linux-4.1.3.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
