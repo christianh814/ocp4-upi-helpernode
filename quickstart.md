@@ -201,7 +201,7 @@ The boostrap VM actually does the install for you; you can track it with the fol
 openshift-install wait-for bootstrap-complete --log-level debug
 ```
 
-Once you see this message; you can continue.
+Once you see this message below...
 
 ```
 DEBUG OpenShift Installer v4.1.0-201905212232-dirty 
@@ -213,7 +213,7 @@ DEBUG Bootstrap status: complete
 INFO It is now safe to remove the bootstrap resources
 ```
 
-You can delete the bootstrap server now.
+...you can continue....at this point you can delete the bootstrap server.
 
 ## Finish Install
 
