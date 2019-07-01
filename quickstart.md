@@ -49,12 +49,12 @@ Create (but do NOT install) 6 empty VMs. Please follow the [min requirements](ht
 
 > Make sure you attached these to the `openshift4` network!
 
-__Boostrap and Masters__
+__Masters__
 
 Create the bootstrap and master VMs
 
 ```
-for i in bootstrap master{0..2}
+for i in master{0..2}
 do 
   virt-install --name="ocp4-${i}" --vcpus=4 --ram=12288 \
   --disk path=/var/lib/libvirt/images/ocp4-${i}.qcow2,bus=virtio,size=120 \
@@ -64,12 +64,12 @@ do
 done
 ```
 
-__Workers__
+__Workers and Bootstrap__
 
 Create worker VMs
 
 ```
-for i in worker{0..1}
+for i in worker{0..1} bootstrap
 do 
   virt-install --name="ocp4-${i}" --vcpus=4 --ram=8192 \
   --disk path=/var/lib/libvirt/images/ocp4-${i}.qcow2,bus=virtio,size=120 \
