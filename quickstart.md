@@ -28,7 +28,7 @@ virsh net-start openshift4
 
 Edit the provided [Kickstart file](helper-ks.cfg) for your environment and use it to install the helper. The following command installs it "unattended".
 
-> NOTE Change the path to the ISO for your environment
+> **NOTE** Change the path to the ISO for your environment
 
 ```
 virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
@@ -38,7 +38,7 @@ virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
 --initrd-inject helper-ks.cfg --extra-args "inst.ks=file:/helper-ks.cfg" --noautoconsole
 ```
 
-The provided Kickstart file installs the helper with the following settings.
+The provided Kickstart file installs the helper with the following settings (which is based on the [virt-net.xml](./virt-net.xml) file that was used before).
 
 * IP - 192.168.7.77
 * NetMask - 255.255.255.0
