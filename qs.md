@@ -26,34 +26,22 @@ virsh net-start openshift4
 
 ## Create a CentOS 7 VM
 
-Edit the provided [Kickstart file](helper-ks.cfg) for your environment and use it to install the helper. The following command installs it "unattended".
+Create a VM for the helper node
 
 ```
 virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
 --disk path=/var/lib/libvirt/images/ocp4-aHelper.qcow2,bus=virtio,size=30 \
 --os-variant centos7.0 --network network=openshift4,model=virtio \
---boot menu=on --location /var/lib/libvirt/ISO/CentOS-7-x86_64-Minimal-1810.iso \
---initrd-inject helper-ks.cfg --extra-args "inst.ks=file:/helper-ks.cfg" --noautoconsole
+--boot menu=on --print-xml > ocp4-aHelper.xml
+virsh define --file ocp4-aHelper.xml
 ```
 
-The provided Kickstart file installs the helper with the following settings.
+Launch `virt-manager` and install CentOS 7 with the following
 
 * IP - 192.168.7.77
 * NetMask - 255.255.255.0
 * Default Gateway - 192.168.7.1
 * DNS Server - 8.8.8.8
-
-You can watch the progress by lauching the viewer
-
-```
-virt-viewer --domain-name ocp4-aHelper
-```
-
-Once it's done, it'll shut off...turn it on with the following command
-
-```
-virsh start ocp4-aHelper
-```
 
 ## Create "empty" VMs
 
