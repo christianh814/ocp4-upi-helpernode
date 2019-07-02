@@ -2,6 +2,8 @@
 # Setup OCP4 Helper Node
 
 - hosts: all
+  vars_files:
+    - ../vars/main.yml
   tasks:
 
   - name: Install needed packages
