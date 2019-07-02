@@ -41,6 +41,24 @@
     command: "date +%Y%m%d00"
     register: dymanicserialnumber
 
+  # TODO : bootstrap server
+  - name: Create directories for fakeroot
+    file:
+      path: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/"
+      state: directory
+      mode: '0755'
+    loop:
+      - "{{ masters }}"
+      - "{{ workers }}"
+
+  - name: Create interface configurations in the fakeroots
+    template:
+      src: ../templates/interface.j2
+      dest: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/ifcfg-{{ item.interface }}"
+    loop:
+      - "{{ masters }}"
+      - "{{ workers }}"
+
   - name: Setting serial number as a fact
     set_fact:
       serialnumber: "{{ dymanicserialnumber.stdout }}"
@@ -218,9 +236,7 @@
       dest: /usr/local/src/filetranspiler
 
   - name: Building filetranspiler
-    podman_image:
-      name: filetranspiler
-      path: /usr/local/src/filetranspiler
+    shell: "podman build /usr/local/src/filetranspiler -t filetranspiler:latest"
 
   - name: Installing filetranspiler
     copy:
