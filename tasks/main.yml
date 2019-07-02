@@ -189,6 +189,11 @@
       path: /usr/local/bin/README.md
       state: absent
 
+  - name: Installing filetranspiler
+    git:
+      repo: https://github.com/ashcrow/filetranspiler
+      dest: /usr/local/src/filetranspiler
+
   - name:  Information about this install
     debug:
       msg:
