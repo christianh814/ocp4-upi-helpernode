@@ -17,6 +17,7 @@
         - libselinux-python
         - syslinux
         - tftp-server
+        - podman
       state: present
 
   - name: Write out dhcp file
@@ -189,10 +190,20 @@
       path: /usr/local/bin/README.md
       state: absent
 
-  - name: Installing filetranspiler
+  - name: Downloading filetranspiler source
     git:
       repo: https://github.com/ashcrow/filetranspiler
       dest: /usr/local/src/filetranspiler
+
+  - name: Building filetranspiler
+    podman_image:
+      name: filetranspiler
+      path: /usr/local/src/filetranspiler
+
+  - name: Installing filetranspiler
+    copy:
+      src: ../files/filetranspiler
+      dest: /usr/local/bin/filetranspiler
 
   - name:  Information about this install
     debug:
