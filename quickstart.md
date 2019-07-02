@@ -28,6 +28,8 @@ virsh net-start openshift4
 
 Edit the provided [Kickstart file](helper-ks.cfg) for your environment and use it to install the helper. The following command installs it "unattended".
 
+> NOTE Change the path to the ISO for your environment
+
 ```
 virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
 --disk path=/var/lib/libvirt/images/ocp4-aHelper.qcow2,bus=virtio,size=30 \
