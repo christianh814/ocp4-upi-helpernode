@@ -42,23 +42,23 @@
     register: dymanicserialnumber
 
   # TODO : bootstrap server
-  - name: Create directories for fakeroot
-    file:
-      path: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/"
-      state: directory
-      mode: '0755'
-    loop:
-      - "{{ masters }}"
-      - "{{ workers }}"
-
-  - name: Create interface configurations in the fakeroots
-    template:
-      src: ../templates/interface.j2
-      dest: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/ifcfg-{{ item.interface }}"
-    loop:
-      - "{{ masters }}"
-      - "{{ workers }}"
-
+##  - name: Create directories for fakeroot
+##    file:
+##      path: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/"
+##      state: directory
+##      mode: '0755'
+##    loop:
+##      - "{{ masters }}"
+##      - "{{ workers }}"
+##
+##  - name: Create interface configurations in the fakeroots
+##    template:
+##      src: ../templates/interface.j2
+##      dest: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/ifcfg-{{ item.interface }}"
+##    loop:
+##      - "{{ masters }}"
+##      - "{{ workers }}"
+##
   - name: Setting serial number as a fact
     set_fact:
       serialnumber: "{{ dymanicserialnumber.stdout }}"
