@@ -43,24 +43,6 @@
     command: "date +%Y%m%d00"
     register: dymanicserialnumber
 
-  # TODO : bootstrap server
-##  - name: Create directories for fakeroot
-##    file:
-##      path: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/"
-##      state: directory
-##      mode: '0755'
-##    loop:
-##      - "{{ masters }}"
-##      - "{{ workers }}"
-##
-##  - name: Create interface configurations in the fakeroots
-##    template:
-##      src: ../templates/interface.j2
-##      dest: "/usr/local/src/{{ item.name}-ip/fakeroot/etc/sysconfig/network-scripts/ifcfg-{{ item.interface }}"
-##    loop:
-##      - "{{ masters }}"
-##      - "{{ workers }}"
-##
   - name: Setting serial number as a fact
     set_fact:
       serialnumber: "{{ dymanicserialnumber.stdout }}"
@@ -162,7 +144,6 @@
       url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-installer-kernel
       dest: /var/lib/tftpboot/rhcos/kernel
       mode: 0555
-    when: not staticips
     when: not staticips
 
   - name: Set the default tftp file
