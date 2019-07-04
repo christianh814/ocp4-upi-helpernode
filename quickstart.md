@@ -67,7 +67,7 @@ Create (but do NOT install) 6 empty VMs. Please follow the [min requirements](ht
 
 __Masters__
 
-Create the bootstrap and master VMs
+Create the master VMs
 
 ```
 for i in master{0..2}
@@ -82,7 +82,7 @@ done
 
 __Workers and Bootstrap__
 
-Create worker VMs
+Create the bootstrap and worker VMs
 
 ```
 for i in worker{0..1} bootstrap
