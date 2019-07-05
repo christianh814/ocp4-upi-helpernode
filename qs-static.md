@@ -2,16 +2,29 @@
 
 This quickstart will get you up and running on `libvirt`. This should work on other environments (i.e. Virtualbox or Enterprise networks); you just have to substitue where applicable
 
-To start clone this repo
+To start login to your virtualization server / hypervisor
 
 ```
-git clone https://github.com/christianh814/ocp4-upi-helpernode
-cd ocp4-upi-helpernode/
+ssh virt0.example.com
+```
+
+And create a working directory
+
+```
+mkdir ~/ocp4-workingdir
+cd ~/ocp4-workingdir
 ```
 
 ## Create Virtual Network
 
-Create a virtual network using the [virt-net.xml](./virt-net.xml) file provided in this repo (modify it if you wish).
+Download the virtual network configuration file, [virt-net.xml](./virt-net.xml)
+
+```
+wget https://raw.githubusercontent.com/christianh814/ocp4-upi-helpernode/master/virt-net.xml
+```
+
+Create a virtual network using this file file provided in this repo (modify if you need to).
+
 
 ```
 virsh net-define --file virt-net.xml
@@ -26,7 +39,13 @@ virsh net-start openshift4
 
 ## Create a CentOS 7 VM
 
-Edit the provided [Kickstart file](helper-ks.cfg) for your environment and use it to install the helper. The following command installs it "unattended".
+Download the [Kickstart file](helper-ks.cfg) for the helper node.
+
+```
+wget https://raw.githubusercontent.com/christianh814/ocp4-upi-helpernode/master/helper-ks.cfg
+```
+
+Edit `helper-ks.cfg` for your environment and use it to install the helper. The following command installs it "unattended".
 
 > **NOTE** Change the path to the ISO for your environment
 
