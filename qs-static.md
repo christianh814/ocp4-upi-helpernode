@@ -64,6 +64,8 @@ The provided Kickstart file installs the helper with the following settings (whi
 * Default Gateway - 192.168.7.1
 * DNS Server - 8.8.8.8
 
+> **NOTE** If you want to use macvtap (i.e. have the VM "be on your network"); you can use `--network type=direct,source=enp0s31f6,source_mode=bridge,model=virtio` ; replace the interface where applicable
+
 You can watch the progress by lauching the viewer
 
 ```
@@ -206,6 +208,8 @@ cp bootstrap-static.ign /var/www/html/ignition/
 ## Install VMs
 
 Install each VM one by one; here's an example for my boostrap node
+
+> **NOTE** If you want to use macvtap (i.e. have the VM "be on your network"); you can use `--network type=direct,source=enp0s31f6,source_mode=bridge,model=virtio` ; replace the interface where applicable
 
 ```
 virt-install --name=ocp4-bootstrap --vcpus=4 --ram=8192 \
