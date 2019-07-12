@@ -48,4 +48,7 @@ Quickstart Notes:
 
 HAProxy stats are on http://{{ helper.ipaddr }}:9000 and you should use it to monitor the install when you start.
 EOF
+
+echo "Status of services:"
+for i in dhcpd named haproxy httpd tftp; do echo -e "Status of $i svc \t\t-> $(systemctl status --no-pager dhcpd | grep --color Active)"; done
 ##
