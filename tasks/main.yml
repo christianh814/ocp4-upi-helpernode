@@ -153,6 +153,25 @@
       mode: 0555
     when: not staticips
 
+  - name: Installing TFTP Systemd helper
+    copy:
+      src: ../files/start-tftp.sh
+      dest: /usr/local/bin/start-tftp.sh
+      mode: '0555'
+    when: not staticips
+
+  - name: Installing TFTP Systemd unit file
+    copy:
+      src: ../files/helper-tftp.service
+      dest: /etc/systemd/system/helper-tftp.service
+      mode: '0655'
+    when: not staticips
+
+  - name: Systemd daemon reload
+    systemd:
+      daemon_reload: yes
+    when: not staticips
+
   - name: Starting services
     service:
       name: "{{ item }}"
@@ -171,6 +190,7 @@
     with_items:
       - dhcpd
       - tftp
+      - helper-tftp
     when: not staticips
 
   - name: Unmasking Services
