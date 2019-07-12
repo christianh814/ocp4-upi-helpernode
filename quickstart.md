@@ -123,6 +123,8 @@ ssh root@192.168.7.77
 
 Install `ansible` and `git` and clone this repo
 
+> **NOTE** If using RHEL 7 - you need to enable the `rhel-7-server-rpms` and the `rhel-7-server-extras-rpms` repos
+
 ```
 yum -y install ansible git
 git clone https://github.com/christianh814/ocp4-upi-helpernode
