@@ -176,6 +176,7 @@
   - name: Unmasking Services
     systemd:
       name: "{{ item }}"
+      enabled: yes
       masked: no
     with_items:
       - tftp
