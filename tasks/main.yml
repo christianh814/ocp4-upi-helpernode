@@ -28,6 +28,12 @@
       state: present
     when: not staticips
 
+  - name: enable service tftp and ensure it is not masked
+    systemd:
+      name: tftp
+      enabled: yes
+      masked: no
+    
   - name: Write out dhcp file
     template:
       src: ../templates/dhcpd.conf.j2
