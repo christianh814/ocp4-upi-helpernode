@@ -173,6 +173,14 @@
       - tftp
     when: not staticips
 
+  - name: Unmasking Services
+    systemd:
+      name: "{{ item }}"
+      masked: no
+    with_items:
+      - tftp
+    when: not staticips
+
   - name: Set the local resolv.conf file
     template:
       src: ../templates/resolv.conf.j2
@@ -227,6 +235,24 @@
       dest: /usr/local/bin/filetranspiler
       mode: '0555'
 
+  - name: Get network interface name
+    command: "nmcli con show | tail -1 | awk '{print $1}'"
+    register: networkinterfacename
+
+  - name: Setting network interface name as a fact
+    set_fact:
+      networkifacename: "{{ networkinterfacename.stdout }}"
+
+  - name: Setting DNS on network interface "{{ networkifacename }}" to 127.0.0.1
+    command: "nmcli con mod {{ networkifacename }}  ipv4.dns 127.0.0.1"
+
+  - name: Restarting NetworkManager
+    service:
+      name: "{{ item }}"
+      state: restarted
+    with_items:
+      - NetworkManager
+ 
   - name:  Information about this install
     debug:
       msg:
