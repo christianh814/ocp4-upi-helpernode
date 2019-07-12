@@ -258,3 +258,4 @@
     debug:
       msg:
         - "Please run /usr/local/bin/helpernodecheck for information"
+        - "NOTE: If you reboot, you have to start tftp service as it doesn't come up on boot"

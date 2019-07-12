@@ -283,6 +283,12 @@ Set up storage for you registry (to use PVs follow [this](https://docs.openshift
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
 ```
 
+If you need to expose the registry, run this command
+
+```
+oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{"spec":{"defaultRoute":true}}'
+```
+
 > Note: You can watch the operators running with `oc get clusteroperators`
 
 Watch your CSRs. These can take some time; go get come coffee or grab some lunch. You'll see your nodes' CSRs in "Pending" (unless they were "auto approved", if so, you can jump to the `wait-for install-complete` step)
