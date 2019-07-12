@@ -189,7 +189,7 @@
   - name: Copy info script over
     template:
       src: ../templates/checker.sh.j2
-      dest: /usr/local/bin/checker.sh
+      dest: /usr/local/bin/helpernodecheck
       owner: root
       group: root
       mode: 0555
@@ -256,4 +256,4 @@
   - name:  Information about this install
     debug:
       msg:
-        - "Please run /usr/local/bin/checker.sh for information"
+        - "Please run /usr/local/bin/helpernodecheck for information"
