@@ -50,5 +50,5 @@ HAProxy stats are on http://{{ helper.ipaddr }}:9000 and you should use it to mo
 EOF
 
 echo "Status of services:"
-for i in dhcpd named haproxy httpd tftp; do echo -e "Status of $i svc \t\t-> $(systemctl status --no-pager dhcpd | grep --color Active)"; done
+for i in dhcpd named haproxy httpd tftp; do echo -e "Status of $i svc \t\t-> $(systemctl status --no-pager $i | grep --color Active)"; done
 ##
