@@ -110,7 +110,7 @@ ansible-playbook -e @vars.yaml -e staticips=true tasks/main.yml
 After it is done run the following to get info about your environment and some install help
 
 ```
-/usr/local/bin/checker.sh
+/usr/local/bin/helpernodecheck
 ```
 
 ## Create Ignition Configs
