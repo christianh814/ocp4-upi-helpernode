@@ -152,7 +152,7 @@ After it is done run the following to get info about your environment and some i
 
 
 ```
-/usr/local/bin/checker.sh
+/usr/local/bin/helpernodecheck
 ```
 
 ## Create Ignition Configs
