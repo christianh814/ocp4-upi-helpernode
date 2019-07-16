@@ -78,7 +78,7 @@
 
   - name: Get OCP4 installer Bios
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-metal-bios.raw.gz
+      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-metal-bios.raw.gz
       dest: /var/www/html/install/bios.raw.gz
       mode: 0555
 
@@ -134,14 +134,14 @@
 
   - name: Get OCP4 installer initramfs
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-installer-initramfs.img
+      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-installer-initramfs.img
       dest: /var/lib/tftpboot/rhcos/initramfs.img
       mode: 0555
     when: not staticips
 
   - name: Get OCP4 installer kernel
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/latest/rhcos-4.1.0-x86_64-installer-kernel
+      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-installer-kernel
       dest: /var/lib/tftpboot/rhcos/kernel
       mode: 0555
     when: not staticips
