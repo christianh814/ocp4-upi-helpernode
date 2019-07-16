@@ -182,7 +182,7 @@
       - haproxy
       - httpd
 
-  - name: Starting DHCP/PXE instlal services
+  - name: Starting DHCP/PXE services
     service:
       name: "{{ item }}"
       enabled: yes
