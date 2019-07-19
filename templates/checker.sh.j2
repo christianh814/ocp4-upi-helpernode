@@ -6,7 +6,9 @@
 
 ##
 show_help () {
-	echo "$(basename $0) {dns-masters|dns-workers|dns-etcd|install-info|haproxy|services}"
+echo "Usage:"
+echo "$(basename $0) {dns-masters|dns-workers|dns-etcd|install-info|haproxy|services}"
+echo ""
 }
 ##
 dns-masters () {
@@ -77,6 +79,7 @@ echo ""
 ###
 install-info () {
 cat <<EOF
+
 This server should also be used as the install node. Apache is running on http://{{ helper.ipaddr }}:8080 You can put your openshift-install artifacts (bios images and ignition files) in /var/www/html
 
 Quickstart Notes:
@@ -94,12 +97,15 @@ EOF
 ###
 haproxy () {
 cat <<EOF
+
 HAProxy stats are on http://{{ helper.ipaddr }}:9000 and you should use it to monitor the install when you start.
+
 EOF
 }
 ###
 services () {
 echo "Status of services:"
+echo "==================="
 for i in dhcpd named haproxy httpd tftp; do echo -e "Status of $i svc \t\t-> $(systemctl status --no-pager $i | grep --color Active)"; done
 }
 ##
