@@ -299,6 +299,14 @@ Once Approved; finish up the install process
 openshift-install wait-for install-complete 
 ```
 
+## Upgrade
+
+If you didn't install the latest 4.1.Z release...then just run the following
+
+```
+oc adm upgrade --to-latest=true
+```
+
 ## DONE
 
 Your install should be done! You're a UPI master!
