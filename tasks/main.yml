@@ -217,23 +217,23 @@
 
   - name: Dowloading OC clients 
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.6/openshift-client-linux-4.1.6.tar.gz
-      dest: /usr/local/src/openshift-client-linux-4.1.6.tar.gz
+      url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.8/openshift-client-linux-4.1.8.tar.gz
+      dest: /usr/local/src/openshift-client-linux-4.1.8.tar.gz
 
   - name: Dowloading OpenShift Installer
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.6/openshift-install-linux-4.1.6.tar.gz
-      dest: /usr/local/src/openshift-install-linux-4.1.6.tar.gz
+      url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.8/openshift-install-linux-4.1.8.tar.gz
+      dest: /usr/local/src/openshift-install-linux-4.1.8.tar.gz
 
   - name: Unarchiving OC clients
     unarchive:
-      src: /usr/local/src/openshift-client-linux-4.1.6.tar.gz
+      src: /usr/local/src/openshift-client-linux-4.1.8.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
   - name: Unarchiving OpenShift Installer
     unarchive:
-      src: /usr/local/src/openshift-install-linux-4.1.6.tar.gz
+      src: /usr/local/src/openshift-install-linux-4.1.8.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
