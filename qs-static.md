@@ -96,7 +96,7 @@ git clone https://github.com/christianh814/ocp4-upi-helpernode
 cd ocp4-upi-helpernode
 ```
 
-Edit the [vars.yaml](./vars.yaml) file with the IP addresss that will be assigned to the masters/workers/boostrap (leave the dummy mac addresses). Also make sure that the `dhcp` section is STILL correct (even though we won't be using DHCP); as those vars are used elsewhere.
+Create the [vars-static.yaml](./vars-static.yaml) file with the IP addresss that will be assigned to the masters/workers/boostrap. The IP addresses need to be right since they will be used to create your DNS server. 
 
 
 ## Run the playbook
@@ -104,7 +104,7 @@ Edit the [vars.yaml](./vars.yaml) file with the IP addresss that will be assigne
 Run the playbook to setup your helper node (using `-e staticips=true` to flag to ansible that you won't be installing dhcp/tftp)
 
 ```
-ansible-playbook -e @vars.yaml -e staticips=true tasks/main.yml
+ansible-playbook -e @vars-static.yaml -e staticips=true tasks/main.yml
 ```
 
 After it is done run the following to get info about your environment and some install help
