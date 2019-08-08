@@ -62,7 +62,7 @@ zone "{{ dns.domain }}" IN {
 	file	"zonefile.db";
 };
 
-zone "{{ dhcp.ipid.split('.')[2] }}.{{ dhcp.ipid.split('.')[1] }}.{{ dhcp.ipid.split('.')[0] }}.in-addr.arpa" IN {
+zone "{{ helper.ipaddr.split('.')[2] }}.{{ helper.ipaddr.split('.')[1] }}.{{ helper.ipaddr.split('.')[0] }}.in-addr.arpa" IN {
 	type	master;
 	file	"reverse.db";
 };
