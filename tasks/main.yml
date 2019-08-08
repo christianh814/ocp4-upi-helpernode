@@ -264,8 +264,11 @@
     set_fact:
       networkifacename: "{{ networkinterfacename.stdout }}"
 
-  - name: Setting DNS on network interface "{{ networkifacename }}" to 127.0.0.1
+  - name: Setting DNS server ip on network interface "{{ networkifacename }}" to 127.0.0.1
     command: "nmcli con mod {{ networkifacename }}  ipv4.dns 127.0.0.1"
+
+  - name: Setting DNS search path on network interface "{{ networkifacename }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
+    command: "nmcli con mod {{ networkifacename }}  ipv4.dns-search {{ dns.clusterid }}.{{ dns.domain }}"
 
   - name: Restarting NetworkManager
     service:
