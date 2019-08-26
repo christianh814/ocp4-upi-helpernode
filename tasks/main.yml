@@ -78,7 +78,7 @@
 
   - name: Get OCP4 installer Bios
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-metal-bios.raw.gz
+      url: "{{ ocp_bios}}"
       dest: /var/www/html/install/bios.raw.gz
       mode: 0555
 
@@ -134,14 +134,14 @@
 
   - name: Get OCP4 installer initramfs
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-installer-initramfs.img
+      url: "{{ ocp_initramfs }}"
       dest: /var/lib/tftpboot/rhcos/initramfs.img
       mode: 0555
     when: not staticips
 
   - name: Get OCP4 installer kernel
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-installer-kernel
+      url: "{{ ocp_install_kernel }}"
       dest: /var/lib/tftpboot/rhcos/kernel
       mode: 0555
     when: not staticips
@@ -217,23 +217,23 @@
 
   - name: Dowloading OC clients 
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.8/openshift-client-linux-4.1.8.tar.gz
-      dest: /usr/local/src/openshift-client-linux-4.1.8.tar.gz
+      url: "{{ ocp_client }}"
+      dest: /usr/local/src/openshift-client-linux.tar.gz
 
   - name: Dowloading OpenShift Installer
     get_url:
-      url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.8/openshift-install-linux-4.1.8.tar.gz
-      dest: /usr/local/src/openshift-install-linux-4.1.8.tar.gz
+      url: "{{ ocp_installer }}"
+      dest: /usr/local/src/openshift-install-linux.tar.gz
 
   - name: Unarchiving OC clients
     unarchive:
-      src: /usr/local/src/openshift-client-linux-4.1.8.tar.gz
+      src: /usr/local/src/openshift-client-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
   - name: Unarchiving OpenShift Installer
     unarchive:
-      src: /usr/local/src/openshift-install-linux-4.1.8.tar.gz
+      src: /usr/local/src/openshift-install-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
