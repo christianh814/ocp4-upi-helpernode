@@ -305,6 +305,12 @@ If you didn't install the latest 4.1.Z release...then just run the following
 oc adm upgrade --to-latest=true
 ```
 
+Scale the router if you need to
+
+```
+oc patch --namespace=openshift-ingress-operator --patch='{"spec": {"replicas": 3}}' --type=merge ingresscontroller/default
+```
+
 ## DONE
 
 Your install should be done! You're a UPI master!
