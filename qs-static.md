@@ -299,10 +299,8 @@ watch oc get csr
 
 To approve them all in one shot...
 
-> **NOTE** You need to install `epel-release` in order to install `jq`
-
 ```
-oc get csr -ojson | jq -r '.items[] | select(.status == {} ) | .metadata.name' | xargs oc adm certificate approve
+oc get csr --no-headers | awk '{print $1}' | xargs oc adm certificate approve
 ```
 
 Check for the approval status (it should say "Approved,Issued")
