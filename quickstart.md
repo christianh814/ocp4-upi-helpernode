@@ -249,17 +249,25 @@ DEBUG Bootstrap status: complete
 INFO It is now safe to remove the bootstrap resources
 ```
 
-...you can continue....at this point you can delete the bootstrap server.
+...you can continue....at this point you must shutdown the bootstrap server.
 
 ## Finish Install
 
-First, login to your cluster
+Now you have reach a state that is may be ready to proceed or may not be ready.
+Check connected nodes from CLI.
+
+```
+oc get nodes
+```
+If not all worker nodes existed, then you need to restart your current worker node and wait for master machines to pick up the nodes. These can take some time; go get come coffee or grab some lunch.
+
+If everything seems right so far, now you can finish the install at your setup machine. 
 
 ```
 export KUBECONFIG=/root/ocp4/auth/kubeconfig
 ```
 
-Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal)
+Set up storage for you registry (to use provisioned persistent volumes, follow [this](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal)
 
 ```
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
@@ -273,7 +281,7 @@ oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{"
 
 > Note: You can watch the operators running with `oc get clusteroperators`
 
-Watch your CSRs. These can take some time; go get come coffee or grab some lunch. You'll see your nodes' CSRs in "Pending" (unless they were "auto approved", if so, you can jump to the `wait-for install-complete` step)
+Watch your CSRs. You'll see your nodes' CSRs in "Pending" (unless they were "auto approved", if so, you can jump to the `wait-for install-complete` step)
 
 ```
 watch oc get csr
