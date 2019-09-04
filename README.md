@@ -11,7 +11,7 @@ This assumes the following
 5. I used CentOS 7
 6. You will be running the `openshift-install` command from this helpernode
 
-![helpernode](images/HelperNode.svg)
+![helpernode](images/HelperNode.jpg)
 
 
 ## Prereqs
