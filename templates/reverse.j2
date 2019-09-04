@@ -1,11 +1,11 @@
 $TTL 1W
-@	IN	SOA	ns1.{{ dns.domain }}.	root (
+@	IN	SOA	ns1.{{ dns.clusterid }}.{{ dns.domain }}.	root (
 			{{ serialnumber }}	; serial
 			3H		; refresh (3 hours)
 			30M		; retry (30 minutes)
 			2W		; expiry (2 weeks)
 			1W )		; minimum (1 week)
-	IN	NS	ns1.{{ dns.domain }}.
+	IN	NS	ns1.{{ dns.clusterid }}.{{ dns.domain }}.
 ;
 ; syntax is "last octet" and the host must have fqdn with trailing dot
 {% for m in masters %}

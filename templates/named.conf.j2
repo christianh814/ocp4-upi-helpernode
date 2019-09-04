@@ -57,7 +57,7 @@ zone "." IN {
 };
 
 ########### Add what's between these comments ###########
-zone "{{ dns.domain }}" IN {
+zone "{{ dns.clusterid }}.{{ dns.domain }}" IN {
 	type	master;
 	file	"zonefile.db";
 };
