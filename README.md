@@ -1,5 +1,7 @@
 # OCP4 UPI Helper Node Playbook
 
+> You can visit the [quickstart](quickstart.md) to get right on it and start
+
 This assumes the following
 
 1. You're on a Network that has access to the internet
@@ -9,7 +11,8 @@ This assumes the following
 5. I used CentOS 7
 6. You will be running the `openshift-install` command from this helpernode
 
-You can visit the [quickstart](quickstart.md) to...quickly start :)
+![helpernode](images/HelperNode.svg)
+
 
 ## Prereqs
 
