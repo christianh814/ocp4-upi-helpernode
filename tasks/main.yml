@@ -4,6 +4,8 @@
 - hosts: all
   vars_files:
     - ../vars/main.yml
+  handlers:
+  - import_tasks: ../handlers/main.yml
   tasks:
 
   - name: Install needed packages
