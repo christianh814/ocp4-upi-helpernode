@@ -27,7 +27,7 @@ options {
 	   reduce such attack surface 
 	*/
 	recursion yes;
-	
+
 	/* Fowarders */
 	forward only;
 	forwarders { {{ dns.forwarder1 | default("8.8.8.8") }}; {{ dns.forwarder2 | default("8.8.4.4") }}; };
