@@ -11,7 +11,7 @@ This assumes the following
 5. I used CentOS 7
 6. You will be running the `openshift-install` command from this helpernode
 
-![helpernode](images/HelperNode.jpg)
+![helpernode](images/hn.jpg)
 
 
 It's important to note that you can delegate DNS to this helpernode if you don't want to use it as your main DNS server. You will have to delegate `$CLUSTERID.$DOMAIN` to this helper node.
