@@ -14,7 +14,13 @@ This assumes the following
 ![helpernode](images/HelperNode.jpg)
 
 
+It's important to note that you can delegate DNS to this helpernode if you don't want to use it as your main DNS server. You will have to delegate `$CLUSTERID.$DOMAIN` to this helper node.
+
+For example; if you want a `$CLUSTERID` of **ocp4**, and a `$DOMAIN` of **example.com**. Then you will delegate `ocp4.example.com` to this helpernode.
+
 ## Prereqs
+
+> **NOTE** If using RHEL 7, you will need to enable the `rhel-7-server-rpms` and the `rhel-7-server-extras-rpms` repos. [EPEL](https://fedoraproject.org/wiki/EPEL) is also recommended for RHEL 7.
 
 Install a CentOS 7 server with this recommended setup:
 

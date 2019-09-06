@@ -19,6 +19,7 @@
         - bash-completion
         - libselinux-python
         - podman
+        - nfs-utils
       state: present
 
   - name: Install packages for DHCP/PXE install
@@ -121,12 +122,34 @@
       - 22623/udp
       - 9000/tcp
       - 69/udp
+      - 111/tcp
+      - 2049/tcp
+      - 20048/tcp
+      - 50825/tcp
+      - 53248/tcp
 
   - name: Best effort SELinux repair - DNS
     shell: "restorecon -vR /var/named || true"
 
   - name: Best effort SELinux repair - Apache
     shell: "restorecon -vR /var/www/html || true"
+
+  - name: Create NFS export directory
+    file:
+      path: /export
+      state: directory
+      mode: 0777
+      owner: nfsnobody
+      group: nfsnobody
+    notify:
+      - restart nfs
+
+  - name: Copy NFS export conf file
+    copy:
+      src: ../files/nfs-exports
+      dest: /etc/exports
+    notify:
+      - restart nfs
 
   - name: Create TFTP config
     file:
@@ -207,6 +230,10 @@
       - named
       - haproxy
       - httpd
+      - rpcbind
+      - nfs-server
+      - nfs-lock
+      - nfs-idmap
 
   - name: Starting DHCP/PXE services
     service:

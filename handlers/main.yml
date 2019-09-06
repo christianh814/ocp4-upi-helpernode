@@ -25,3 +25,8 @@
     name: tftp
     state: restarted
 
+- name: restart nfs
+  service:
+    name: nfs-server
+    state: restarted
+
