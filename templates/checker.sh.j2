@@ -108,6 +108,38 @@ echo "Status of services:"
 echo "==================="
 for i in dhcpd named haproxy httpd tftp; do echo -e "Status of $i svc \t\t-> $(systemctl status --no-pager $i | grep --color Active)"; done
 }
+###
+nfs-info () {
+availablesize=$(df -h --output=avail /export | tail -1 | tr -d " ""\t""[:alpha:]")
+warningsize=50
+#
+cat <<EOF
+
+An NFS server has been installed and the entire /export directory has been shared out. To create a share simply run the following command as root:
+
+mkdir -m 777 -p /export/pv0001
+
+Thats it! There is no need to "share" this by modifying anything!
+
+EOF
+#
+if [ ${availablesize} -le ${warningsize} ]; then
+cat <<EOW
+
+!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!
+
+I've detected that you're using as small disk for your /export directory. OpenShift uses a LOT of storage and it's recommended to use a disk of AT LEAST 100GB. You can do one of two things...
+
+	1) Add a disk to this server and mount it on /export (RECOMMENDED)
+	2) Grow the / volume (not ideal but okay)
+
+If you proceed to use this server how it is, you void ANY chance of help from me on slack or github :)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+EOW
+fi
+}
 ##
 
 ##################################################
@@ -132,6 +164,9 @@ case "$1" in
     ;;
   services)
     services
+    ;;
+  nfs-info)
+    nfs-info
     ;;
   *)
     show_help
