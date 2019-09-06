@@ -254,18 +254,21 @@ INFO It is now safe to remove the bootstrap resources
 ## Finish Install
 
 Now you have reach a state that is may be ready to proceed or may not be ready.
-Check connected nodes from CLI.
 
-```
-oc get nodes
-```
-If not all worker nodes existed, then you need to restart your current worker node and wait for master machines to pick up the nodes. These can take some time; go get come coffee or grab some lunch.
-
-If everything seems right so far, now you can finish the install at your setup machine. 
-
+First, export config so you can using `oc` command.
 ```
 export KUBECONFIG=/root/ocp4/auth/kubeconfig
 ```
+
+Then, Check connected nodes from CLI.
+```
+oc get nodes
+```
+If not all worker nodes existed, then you need make sure dns and reverse dns record is available for your cluster.
+You can check file `/etc/named/zonefile.db`, `/etc/named/reverse.db` and command `nslookup`.
+Then you can try to restart your current worker node and wait for master machines to pick up the nodes. These can take some time; go get come coffee or grab some lunch.
+
+If everything seems right so far, now you can finish the install at your setup machine. 
 
 Set up storage for you registry (to use provisioned persistent volumes, follow [this](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal)
 
