@@ -50,9 +50,9 @@ Once you edited your `vars.yaml` file; run the playbook
 ansible-playbook -e @vars.yaml tasks/main.yml
 ```
 
-## Check DNS
+## Helper Script
 
-Once it's ran, check if the DNS is okay with the checker script
+You can run this script and it's options to display helpful information about the install.
 
 ```
 /usr/local/bin/helpernodecheck
