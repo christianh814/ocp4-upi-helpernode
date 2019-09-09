@@ -205,7 +205,7 @@ Copy this over to your apache serving dir.
 cp bootstrap-static.ign /var/www/html/ignition/
 ```
 
-^ Do this for ALL servers in your cluster!
+**__^ Do this for ALL servers in your cluster!__**
 
 ## Install VMs
 
