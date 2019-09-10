@@ -205,11 +205,34 @@
       mode: 0555
     when: not staticips
 
-  - name: Set the default tftp file
-    template:
-      src: ../templates/default.j2
-      dest: /var/lib/tftpboot/pxelinux.cfg/default
-      mode: 0555
+  - name: Generate pxe config files
+    block:
+    - name: Set the default tftp file
+      template:
+        src: ../templates/default.j2
+        dest: /var/lib/tftpboot/pxelinux.cfg/default
+        mode: 0555
+
+    - name: Set the bootstrap specific tftp file
+      template:
+        src: ../templates/pxe-bootstrap.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ bootstrap }}"
+
+    - name: Set the master specific tftp files
+      template:
+        src: ../templates/pxe-master.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ masters }}"
+
+    - name: Set the worker specific tftp files
+      template:
+        src: ../templates/pxe-workers.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ workers }}"
     notify:
       - restart tftp
     when: not staticips
@@ -359,9 +382,9 @@
       dest: /usr/local/bin/filetranspiler
       mode: '0555'
 
-  - name: Get network device system name
-    shell: "nmcli -t dev show {{ helper.networkifacename }} | grep GENERAL.CONNECTION | cut -d: -f2"
-    register: devicesystemname
+  - name: Get network interface name
+    shell: "nmcli con show | grep eth1 | awk '{print $1}'"
+    register: networkinterfacename
 
   - name: Setting network device system name as a fact
     set_fact:
