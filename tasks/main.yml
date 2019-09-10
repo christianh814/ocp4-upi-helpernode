@@ -388,7 +388,7 @@
       mode: '0555'
 
   - name: Get network interface name
-    shell: "nmcli con show | grep eth1 | awk '{print $1}'"
+    shell: "nmcli con show | tail -1 | awk '{print $1}'"
     register: networkinterfacename
 
   - name: Setting network interface name as a fact
