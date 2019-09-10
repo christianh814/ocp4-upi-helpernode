@@ -387,8 +387,16 @@
       dest: /usr/local/bin/filetranspiler
       mode: '0555'
 
-  - name: Setting DNS server ip on network interface "{{ helper.networkifacename }}" to 127.0.0.1
-    command: "nmcli con mod {{ helper.networkifacename }}  ipv4.dns 127.0.0.1"
+  - name: Get network interface name
+    shell: "nmcli con show | tail -1 | awk '{print $1}'"
+    register: networkinterfacename
+
+  - name: Setting network interface name as a fact
+    set_fact:
+      networkifacename: "{{ networkinterfacename.stdout }}"
+
+  - name: Setting DNS server ip on network interface "{{ networkifacename }}" to 127.0.0.1
+    command: "nmcli con mod {{ networkifacename }}  ipv4.dns 127.0.0.1"
 
   - name: Setting DNS search path on network interface "{{ helper.networkifacename }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
     command: "nmcli con mod {{ helper.networkifacename }}  ipv4.dns-search {{ dns.clusterid }}.{{ dns.domain }}"
