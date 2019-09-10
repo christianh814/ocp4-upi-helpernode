@@ -1,0 +1,21 @@
+---
+# Setup OCP4 Helper Node
+
+- hosts: all
+  vars_files:
+    - ../vars/main.yml
+  handlers:
+  - import_tasks: ../handlers/main.yml
+  tasks:
+
+
+  - name: Set the master specific tftp file
+    template:
+      src: ../templates/pxe-master.j2
+      dest: "/tmp/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace(':', '-') }}"
+      mode: 0555
+    with_items: "{{ masters }}"
+    notify:
+      - restart tftp
+    when: not staticips
+
