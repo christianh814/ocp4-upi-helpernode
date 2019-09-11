@@ -200,13 +200,16 @@
         src: ../templates/default.j2
         dest: /var/lib/tftpboot/pxelinux.cfg/default
         mode: 0555
+      notify:
+        - restart tftp
 
     - name: Set the bootstrap specific tftp file
       template:
         src: ../templates/pxe-bootstrap.j2
-        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ bootstrap.macaddr | regex_replace (':', '-')}}"
         mode: 0555
-      with_items: "{{ bootstrap }}"
+      notify:
+        - restart tftp
 
     - name: Set the master specific tftp files
       template:
@@ -214,15 +217,17 @@
         dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
         mode: 0555
       with_items: "{{ masters }}"
+      notify:
+        - restart tftp
 
     - name: Set the worker specific tftp files
       template:
-        src: ../templates/pxe-workers.j2
+        src: ../templates/pxe-worker.j2
         dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
         mode: 0555
       with_items: "{{ workers }}"
-    notify:
-      - restart tftp
+      notify:
+        - restart tftp
     when: not staticips
 
   - name: Installing TFTP Systemd helper
@@ -334,6 +339,7 @@
 
   - name: Setting DNS server ip on network interface "{{ helper.networkifacename }}" to 127.0.0.1
     command: "nmcli con mod {{ helper.networkifacename }}  ipv4.dns 127.0.0.1"
+
 
   - name: Setting DNS search path on network interface "{{ helper.networkifacename }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
     command: "nmcli con mod {{ helper.networkifacename }}  ipv4.dns-search {{ dns.clusterid }}.{{ dns.domain }}"
