@@ -310,7 +310,7 @@
       mode: '0555'
 
   - name: Get network device system name
-    shell: "nmcli -t dev show {{ helper.networkifacename }} | grep GENERAL.CONNECTION | cut -d: -f2)"
+    shell: "nmcli -t dev show {{ helper.networkifacename }} | grep GENERAL.CONNECTION | cut -d: -f2"
     register: devicesystemname
 
   - name: Setting network device system name as a fact
