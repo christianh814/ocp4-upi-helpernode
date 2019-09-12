@@ -307,7 +307,7 @@
     copy:
       src: ../files/filetranspiler
       dest: /usr/local/bin/filetranspiler
-      mod
+      mode: '0555'
 
   - name: Get network device system name
     shell: "nmcli -t dev show {{ helper.networkifacename }} | grep GENERAL.CONNECTION | cut -d: -f2)"
