@@ -10,7 +10,7 @@ max-lease-time 14400;
 	option domain-name              "{{ dns.clusterid }}.{{ dns.domain }}";
 
 	subnet {{ dhcp.ipid }} netmask {{ dhcp.netmaskid }} {
-	interface {{ helper.networkifacename }};
+	interface {{ helper.networkifacename.split(' ')[-1] }};
      	pool {
         	range {{ dhcp.poolstart }} {{ dhcp.poolend }};
 		# Static entries
