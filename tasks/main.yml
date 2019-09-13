@@ -317,10 +317,10 @@
     set_fact:
       dsname: "{{ devicesystemname.stdout }}"
 
-  - name: Setting DNS server ip on network interface "{{ helper.networkifacename }}" to 127.0.0.1
+  - name: Setting DNS server ip on network interface "{{ dsname }}" to 127.0.0.1
     shell: 'nmcli con mod "{{ dsname }}" ipv4.dns 127.0.0.1'
 
-  - name: Setting DNS search path on network interface "{{ helper.networkifacename }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
+  - name: Setting DNS search path on network interface "{{ dsname }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
     shell: 'nmcli con mod  "{{ dsname }}" ipv4.dns-search {{ dns.clusterid }}.{{ dns.domain }}'
 
   - name: Restarting NetworkManager
