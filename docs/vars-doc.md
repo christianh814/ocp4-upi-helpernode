@@ -133,7 +133,7 @@ masters:
 
 **NOTE**: 3 Masters are MANDATORY for installation of OpenShift 4
 
-## Node Node section
+## Worker Node section
 
 Similar to the master section; this sets up worker node configuration. Please note that this is an array.
 
