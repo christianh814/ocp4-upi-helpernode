@@ -36,7 +36,7 @@ This is how it breaks down
 * `helper.ipaddr` - Set this to the current IP address of the helper. This is used to set up the [reverse dns definition](../templates/named.conf.j2#L65)
 * `helper.networkifacename` - This is set to the network interface of the helper (what you see when you do `ip addr`)
 
-**NOTE**: The `helper.networkifacename` is the ACTUAL name of the interface, NOT the NetworkManager name (you should **__NEVER__** need to set it to something like `System eth0`. Set it to what you see in `ip addr`
+**NOTE**: The `helper.networkifacename` is the ACTUAL name of the interface, NOT the NetworkManager name (you should _NEVER_ need to set it to something like `System eth0`. Set it to what you see in `ip addr`)
 
 
 ## DNS Section
