@@ -1,4 +1,5 @@
 ---
+staticips: true
 helper:
   name: "helper"
   ipaddr: "192.168.7.77"

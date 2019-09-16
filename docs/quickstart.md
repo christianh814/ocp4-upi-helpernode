@@ -131,7 +131,11 @@ git clone https://github.com/christianh814/ocp4-upi-helpernode
 cd ocp4-upi-helpernode
 ```
 
-Edit the [vars.yaml](examples/vars.yaml) file with the mac addresses of the "blank" VMs. Get the Mac addresses with this command running from your hypervisor host:
+Edit the [vars.yaml](examples/vars.yaml) file with the mac addresses of the "blank" VMs.
+
+> **NOTE** See the `vars.yaml` [documentaion page](docs/vars-doc.md) for more info about what it does.
+
+Get the Mac addresses with this command running from your hypervisor host:
 
 ```
 for i in bootstrap master{0..2} worker{0..1}

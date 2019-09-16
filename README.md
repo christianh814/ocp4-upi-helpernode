@@ -41,6 +41,8 @@ cd ocp4-upi-helpernode
 
 Inside that dir there is a [vars.yaml](docs/examples/vars.yaml) file ... **__modify it__** to match your network (the example one assumes a `/24`)
 
+> **NOTE** See the `vars.yaml` [documentaion page](docs/vars-doc.md) for more info about what it does.
+
 
 ## Run the playbook
 
