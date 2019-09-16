@@ -224,7 +224,7 @@ virt-install --name=ocp4-bootstrap --vcpus=4 --ram=8192 \
 
 Once booted; press `tab` on the boot menu
 
-![rhcos(images/rhcos.png)
+![rhcos](images/rhcos.png)
 
 Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
