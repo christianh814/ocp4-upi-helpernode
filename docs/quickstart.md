@@ -2,7 +2,7 @@
 
 This quickstart will get you up and running on `libvirt`. This should work on other environments (i.e. Virtualbox); you just have to figure out how to do the virtual network on your own.
 
-> **NOTE** If you want to use static ips follow [this guide](qs-static.md)
+> **NOTE** If you want to use static ips follow [this guide](quickstart-static.md)
 
 To start login to your virtualization server / hypervisor
 
