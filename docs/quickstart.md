@@ -213,7 +213,7 @@ restorecon -vR /var/www/html/
 
 Launch `virt-manager`, and boot the VMs into the boot menu; and select PXE. You'll be presented with the following picture.
 
-![pxe](./images/pxe.png)
+![pxe](images/pxe.png)
 
 Boot/install the VMs in the following order
 

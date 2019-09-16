@@ -222,7 +222,11 @@ virt-install --name=ocp4-bootstrap --vcpus=4 --ram=8192 \
 
 > **NOTE** If the console doesn't launch you can open it via `virt-manager`
 
-Once booted; press `tab` on the boot menu and add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
+Once booted; press `tab` on the boot menu
+
+![rhcos(images/rhcos.png)
+
+Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
 ```
 ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap:ens3:none:192.168.7.77
