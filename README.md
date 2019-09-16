@@ -1,6 +1,6 @@
 # OCP4 UPI Helper Node Playbook
 
-> You can visit the [quickstart](quickstart.md) to get right on it and start
+> You can visit the [quickstart](docs/quickstart.md) to get right on it and start
 
 This assumes the following
 
@@ -11,7 +11,7 @@ This assumes the following
 5. I used CentOS 7
 6. You will be running the `openshift-install` command from this helpernode
 
-![helpernode](images/hn.jpg)
+![helpernode](docs/images/hn.jpg)
 
 
 It's important to note that you can delegate DNS to this helpernode if you don't want to use it as your main DNS server. You will have to delegate `$CLUSTERID.$DOMAIN` to this helper node.
@@ -39,7 +39,7 @@ cd ocp4-upi-helpernode
 
 ## Setup your Environment Vars
 
-Inside that dir there is a [vars.yaml](./vars.yaml) file ... **__modify it__** to match your network (the example one assumes a `/24`)
+Inside that dir there is a [vars.yaml](docs/examples/vars.yaml) file ... **__modify it__** to match your network (the example one assumes a `/24`)
 
 
 ## Run the playbook

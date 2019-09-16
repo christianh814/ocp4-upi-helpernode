@@ -11,7 +11,7 @@ cd ocp4-upi-helpernode/
 
 ## Create Virtual Network
 
-Create a virtual network using the [virt-net.xml](./virt-net.xml) file provided in this repo (modify it if you wish).
+Create a virtual network using the [virt-net.xml](examples/virt-net.xml) file provided in this repo (modify it if you wish).
 
 ```
 virsh net-define --file virt-net.xml
@@ -95,7 +95,7 @@ git clone https://github.com/christianh814/ocp4-upi-helpernode
 cd ocp4-upi-helpernode
 ```
 
-Edit the [vars.yaml](./vars.yaml) file with the mac addresses of the "blank" VMs. Get the Mac addresses with this command
+Edit the [vars.yaml](examples/vars.yaml) file with the mac addresses of the "blank" VMs. Get the Mac addresses with this command
 
 ```
 for i in bootstrap master{0..2} worker{0..1}
