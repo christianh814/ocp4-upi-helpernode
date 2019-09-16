@@ -20,7 +20,7 @@ cd ~/ocp4-workingdir
 Download the virtual network configuration file, [virt-net.xml](examples/virt-net.xml)
 
 ```
-wget https://raw.githubusercontent.com/christianh814/ocp4-upi-helpernode/master/virt-net.xml
+wget https://raw.githubusercontent.com/christianh814/ocp4-upi-helpernode/master/docs/examples/virt-net.xml
 ```
 
 Create a virtual network using this file file provided in this repo (modify if you need to).
@@ -42,7 +42,7 @@ virsh net-start openshift4
 Download the [Kickstart file](examples/helper-ks.cfg) for the helper node.
 
 ```
-wget https://raw.githubusercontent.com/christianh814/ocp4-upi-helpernode/master/helper-ks.cfg
+wget https://raw.githubusercontent.com/christianh814/ocp4-upi-helpernode/master/docs/examples/helper-ks.cfg
 ```
 
 Edit `helper-ks.cfg` for your environment and use it to install the helper. The following command installs it "unattended".
