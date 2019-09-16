@@ -33,7 +33,7 @@ helper:
 This is how it breaks down
 
 * `helper.name` - This needs to be set to the hostname you want your helper to be (some people leave it as "helper" others change it to "bastion")
-* `helper.ipaddr` - Set this to the current IP address of the helper. This is used to set up the [reverse dns definition](templates/named.conf.j2#L65)
+* `helper.ipaddr` - Set this to the current IP address of the helper. This is used to set up the [reverse dns definition](../templates/named.conf.j2#L65)
 * `helper.networkifacename` - This is set to the network interface of the helper (what you see when you do `ip addr`)
 
 **NOTE**: The `helper.networkifacename` is the ACTUAL name of the interface, NOT the NetworkManager name (you should **__NEVER__** need to set it to something like `System eth0`. Set it to what you see in `ip addr`
@@ -58,7 +58,7 @@ Explanation of the DNS variables:
 * `dns.forwarder1` - Tis will be set up as the DNS forwarder. This is usually one of the corprate (or "upstream") DNS servers.
 * `dns.forwarder2` - Tis will be set up as the second DNS forwarder. This is usually one of the corprate (or "upstream") DNS servers.
 
-The DNS server will be set up using `dns.clusterid` + `dns.domain` as the domain it's serving. In the above example, the helper will be setup to be the SOA for `ocp4.example.com`. The helper will also be setup as it's [own DNS server](templates/resolv.conf.j2)
+The DNS server will be set up using `dns.clusterid` + `dns.domain` as the domain it's serving. In the above example, the helper will be setup to be the SOA for `ocp4.example.com`. The helper will also be setup as it's [own DNS server](../templates/resolv.conf.j2)
 
 **NOTE**: Although you _CAN_ use the helper as your dns server. It's best to have your DNS server delegate the `dns.clusterid` + `dns.domain` domain to the helper (i.e. Delegate `ocp4.example.com` to the helper)
 
