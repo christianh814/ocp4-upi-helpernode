@@ -133,7 +133,7 @@ cd ocp4-upi-helpernode
 
 Edit the [vars.yaml](examples/vars.yaml) file with the mac addresses of the "blank" VMs.
 
-> **NOTE** See the `vars.yaml` [documentaion page](docs/vars-doc.md) for more info about what it does.
+> **NOTE** See the `vars.yaml` [documentaion page](vars-doc.md) for more info about what it does.
 
 Get the Mac addresses with this command running from your hypervisor host:
 

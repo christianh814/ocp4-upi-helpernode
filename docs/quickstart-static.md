@@ -98,7 +98,7 @@ cd ocp4-upi-helpernode
 
 Create the [vars-static.yaml](examples/vars-static.yaml) file with the IP addresss that will be assigned to the masters/workers/boostrap. The IP addresses need to be right since they will be used to create your DNS server. 
 
-> **NOTE** See the `vars.yaml` [documentaion page](docs/vars-doc.md) for more info about what it does.
+> **NOTE** See the `vars.yaml` [documentaion page](vars-doc.md) for more info about what it does.
 
 
 ## Run the playbook
