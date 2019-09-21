@@ -102,6 +102,7 @@
       url: "{{ ocp_bios}}"
       dest: /var/www/html/install/bios.raw.gz
       mode: 0555
+      validate_certs: no
 
   - name: Open up firewall ports
     firewalld:
@@ -184,6 +185,7 @@
       url: "{{ ocp_initramfs }}"
       dest: /var/lib/tftpboot/rhcos/initramfs.img
       mode: 0555
+      validate_certs: no
     when: not staticips
 
   - name: Get OCP4 installer kernel
@@ -191,15 +193,44 @@
       url: "{{ ocp_install_kernel }}"
       dest: /var/lib/tftpboot/rhcos/kernel
       mode: 0555
+      validate_certs: no
     when: not staticips
 
-  - name: Set the default tftp file
-    template:
-      src: ../templates/default.j2
-      dest: /var/lib/tftpboot/pxelinux.cfg/default
-      mode: 0555
-    notify:
-      - restart tftp
+  - name: Generate pxe config files
+    block:
+    - name: Set the default tftp file
+      template:
+        src: ../templates/default.j2
+        dest: /var/lib/tftpboot/pxelinux.cfg/default
+        mode: 0555
+      notify:
+        - restart tftp
+
+    - name: Set the bootstrap specific tftp file
+      template:
+        src: ../templates/pxe-bootstrap.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ bootstrap.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      notify:
+        - restart tftp
+
+    - name: Set the master specific tftp files
+      template:
+        src: ../templates/pxe-master.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ masters }}"
+      notify:
+        - restart tftp
+
+    - name: Set the worker specific tftp files
+      template:
+        src: ../templates/pxe-worker.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ workers }}"
+      notify:
+        - restart tftp
     when: not staticips
 
   - name: Installing TFTP Systemd helper
@@ -272,11 +303,13 @@
     get_url:
       url: "{{ ocp_client }}"
       dest: /usr/local/src/openshift-client-linux.tar.gz
+      validate_certs: no
 
   - name: Dowloading OpenShift Installer
     get_url:
       url: "{{ ocp_installer }}"
       dest: /usr/local/src/openshift-install-linux.tar.gz
+      validate_certs: no
 
   - name: Unarchiving OC clients
     unarchive:

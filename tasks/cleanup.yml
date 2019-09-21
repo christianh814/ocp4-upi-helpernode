@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  tasks:
+  - name: cleanup generated files
+    file:
+      state: absent
+      path: "{{ item }}"
+    with_items:
+      - /etc/dhcp/dhcpd.conf
+      - /etc/named.conf
+      - /usr/local/bin/set-dns-serial.sh
+      - /var/named/zonefile.db
+      - /var/named/reverse.db
+      - /etc/haproxy/haproxy.cfg
+      - /etc/httpd/conf/httpd.conf
+      - /var/www/html/install/bios.raw.gz
+      - /var/lib/tftpboot/rhcos/initramfs.img
+      - /var/lib/tftpboot/rhcos/kernel
+      - /var/lib/tftpboot/pxelinux.cfg/default
+      - /usr/local/bin/start-tftp.sh
+      - /etc/systemd/system/helper-tftp.service
+      - /usr/local/bin/helpernodecheck
+      - /usr/local/src/openshift-client-linux.tar.gz
+      - /usr/local/src/openshift-install-linux.tar.gz
+      - /usr/local/src/filetranspiler
+      - /usr/local/bin/filetranspiler
+#      - /etc/resolv.conf
