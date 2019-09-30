@@ -268,6 +268,38 @@
       group: root
       mode: 0555
 
+  - name: Copying over nfs-provisioner rbac
+    copy:
+      src: ../files/nfs-provisioner-rbac.yaml
+      dest: /usr/local/src/nfs-provisioner-rbac.yaml
+      owner: root
+      group: root
+      mode: 0666
+
+  - name: Copying over nfs-provisioner deployment
+    template:
+      src: ../templates/nfs-provisioner-deployment.yaml.j2
+      dest: /usr/local/src/nfs-provisioner-deployment.yaml
+      owner: root
+      group: root
+      mode: 0666
+
+  - name: Copying over nfs-provisioner storageclass
+    copy:
+      src: ../files/nfs-provisioner-sc.yaml
+      dest: /usr/local/src/nfs-provisioner-sc.yaml
+      owner: root
+      group: root
+      mode: 0666
+
+  - name: Copying over nfs-provisioner setup script
+    copy:
+      src: ../files/nfs-provisioner-setup.sh
+      dest: /usr/local/bin/nfs-provisioner-setup.sh
+      owner: root
+      group: root
+      mode: 0555
+
   - name: Dowloading OC clients 
     get_url:
       url: "{{ ocp_client }}"

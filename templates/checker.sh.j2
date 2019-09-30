@@ -115,11 +115,11 @@ warningsize=50
 #
 cat <<EOF
 
-An NFS server has been installed and the entire /export directory has been shared out. To create a share simply run the following command as root:
+An NFS server has been installed and the entire /export directory has been shared out. To set up the nfs-auto-provisioner; you just need to run...
 
-mkdir -m 777 -p /export/pv0001
+$(basename $0) nfs-setup
 
-Thats it! There is no need to "share" this by modifying anything!
+Thats it!
 
 EOF
 #
@@ -167,6 +167,9 @@ case "$1" in
     ;;
   nfs-info)
     nfs-info
+    ;;
+  nfs-setup)
+    /usr/local/bin/nfs-provisioner-setup.sh
     ;;
   *)
     show_help
