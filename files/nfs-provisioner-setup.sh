@@ -9,6 +9,8 @@ export PATH=/usr/local/bin:$PATH
 ## Check openshift connection
 if ! oc get project default -o jsonpath={.metadata.name} > /dev/null 2>&1 ; then
 	echo "ERROR: Cannot connect to OpenShift. Are you sure you exported your KUBECONFIG path and are admin?"
+	echo ""
+	echo "...remember this is a POST INSTALL step."
 	exit 254
 fi
 #
