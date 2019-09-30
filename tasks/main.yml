@@ -361,7 +361,7 @@
       state: restarted
     with_items:
       - NetworkManager
- 
+
   - name:  Information about this install
     debug:
       msg:
