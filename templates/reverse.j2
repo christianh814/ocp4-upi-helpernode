@@ -14,8 +14,8 @@ $TTL 1W
 ;
 {{ bootstrap.ipaddr.split('.')[3] }}	IN	PTR	{{ bootstrap.name }}.{{ dns.clusterid }}.{{ dns.domain }}.
 ;
-{{ helper.ipaddr.split('.')[3] }}	IN	PTR	api.ocp4.{{ dns.clusterid }}.{{ dns.domain }}.
-{{ helper.ipaddr.split('.')[3] }}	IN	PTR	api-int.ocp4.{{ dns.clusterid }}.{{ dns.domain }}.
+{{ helper.ipaddr.split('.')[3] }}	IN	PTR	api.{{ dns.clusterid }}.{{ dns.domain }}.
+{{ helper.ipaddr.split('.')[3] }}	IN	PTR	api-int.{{ dns.clusterid }}.{{ dns.domain }}.
 ;
 {% for w in workers %}
 {{ w.ipaddr.split('.')[3] }}	IN	PTR	{{ w.name }}.{{ dns.clusterid }}.{{ dns.domain }}.
