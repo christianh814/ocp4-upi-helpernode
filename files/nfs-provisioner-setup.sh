@@ -26,6 +26,12 @@ do
 	[[ ! -f ${file} ]] && echo "FATAL: File ${file} does not exist" && exit 254
 done
 #
+## Check if the project is already there
+if oc get project ${nfsnamespace} -o jsonpath={.metadata.name} > /dev/null 2>&1 ; then
+	echo "ERROR: Looks like you've already deployed the nfs-provisioner"
+	exit 254
+fi
+#
 ## If we are here; I can try and deploy
 oc new-project ${nfsnamespace}
 oc project ${nfsnamespace}
