@@ -102,7 +102,6 @@
       url: "{{ ocp_bios}}"
       dest: /var/www/html/install/bios.raw.gz
       mode: 0555
-      force: true
 
   - name: Open up firewall ports
     firewalld:
@@ -185,7 +184,6 @@
       url: "{{ ocp_initramfs }}"
       dest: /var/lib/tftpboot/rhcos/initramfs.img
       mode: 0555
-      force: true
     when: not staticips
 
   - name: Downloading OCP4 installer kernel
@@ -302,17 +300,27 @@
       group: root
       mode: 0555
 
+  - name: Delete OCP4 files, if requested, to download again
+    file:
+       state: absent
+       path: "{{ item }}"
+    with_items: 
+      - "/usr/local/src/openshift-client-linux.tar.gz"
+      - "/usr/local/src/openshift-install-linux.tar.gz" 
+      - "/var/www/html/install/bios.raw.gz"
+      - "/var/lib/tftpboot/rhcos/initramfs.img"
+      - "/var/lib/tftpboot/rhcos/kernel"
+    when: force_download is true
+
   - name: Downloading OCP4 client
     get_url:
       url: "{{ ocp_client }}"
       dest: /usr/local/src/openshift-client-linux.tar.gz
-      force: true
 
   - name: Downloading OCP4 Installer
     get_url:
       url: "{{ ocp_installer }}"
       dest: /usr/local/src/openshift-install-linux.tar.gz
-      force: true
 
   - name: Unarchiving OCP4 client
     unarchive:
