@@ -107,7 +107,7 @@
       - "/var/www/html/install/bios.raw.gz"
       - "/var/lib/tftpboot/rhcos/initramfs.img"
       - "/var/lib/tftpboot/rhcos/kernel"
-    when: force_download 
+    when: force_ocp_download 
 
   - name: Downloading OCP4 installer Bios
     get_url:
