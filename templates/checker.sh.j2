@@ -115,11 +115,11 @@ warningsize=50
 #
 cat <<EOF
 
-An NFS server has been installed and the entire /export directory has been shared out. To set up the nfs-auto-provisioner; you just need to run...
+An NFS server has been installed and the entire /export directory has been shared out. To set up the nfs-auto-provisioner; you just need to run the following command after "openshift-install wait-for bootstrap-complete --log-level debug" has finished...
 
-$(basename $0) nfs-setup
+	$(basename $0) nfs-setup
 
-Thats it!
+Thats it! Right now, this is an "opinionated" setup (there is no "how do I set this up for..."). For now, this is what you get.
 
 EOF
 #
