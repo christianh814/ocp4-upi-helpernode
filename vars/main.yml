@@ -1,8 +1,5 @@
 ---
-# vars file for tester
 staticips: false
-
-# Set to true to clean and re-download ocp files
 force_ocp_download: false
 ocp_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-metal-bios.raw.gz"
 ocp_initramfs: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.1/4.1.0/rhcos-4.1.0-x86_64-installer-initramfs.img"
