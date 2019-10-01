@@ -121,6 +121,18 @@ An NFS server has been installed and the entire /export directory has been share
 
 Thats it! Right now, this is an "opinionated" setup (there is no "how do I set this up for..."). For now, this is what you get.
 
+Once it's setup, create a PVC for the registry (an example of one has been provided)
+
+	oc create -f /usr/local/src/registry-pvc.yaml -n openshift-image-registry
+
+Check that with "oc get pv" and "oc get pvc -n openshift-image-registry". Then set the registry to use this NFS volume.
+
+	oc patch configs.imageregistry.operator.openshift.io cluster --type merge \
+	--patch '{"spec":{"storage":{"pvc":{ "claim": "registry-pvc"}}}}'
+
+
+Check the status by watching "oc get pods -n openshift-image-registry"
+
 EOF
 #
 if [ ${availablesize} -le ${warningsize} ]; then

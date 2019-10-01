@@ -312,6 +312,12 @@
       group: root
       mode: 0555
 
+  - name: Copying over a sample PVC file for NFS
+    copy:
+      src: ../files/registry-pvc.yaml
+      dest: /usr/local/src/registry-pvc.yaml
+      mode: '0555'
+
   - name: Downloading OCP4 client
     get_url:
       url: "{{ ocp_client }}"
