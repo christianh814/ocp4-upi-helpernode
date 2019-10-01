@@ -101,13 +101,13 @@
     file:
        state: absent
        path: "{{ item }}"
-    with_items: 
+    with_items:
       - "/usr/local/src/openshift-client-linux.tar.gz"
-      - "/usr/local/src/openshift-install-linux.tar.gz" 
+      - "/usr/local/src/openshift-install-linux.tar.gz"
       - "/var/www/html/install/bios.raw.gz"
       - "/var/lib/tftpboot/rhcos/initramfs.img"
       - "/var/lib/tftpboot/rhcos/kernel"
-    when: force_ocp_download 
+    when: force_ocp_download
 
   - name: Downloading OCP4 installer Bios
     get_url:
