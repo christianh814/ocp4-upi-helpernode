@@ -127,8 +127,7 @@ Once it's setup, create a PVC for the registry (an example of one has been provi
 
 Check that with "oc get pv" and "oc get pvc -n openshift-image-registry". Then set the registry to use this NFS volume.
 
-	oc patch configs.imageregistry.operator.openshift.io cluster --type merge \
-	--patch '{"spec":{"storage":{"pvc":{ "claim": "registry-pvc"}}}}'
+	oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"pvc":{ "claim": "registry-pvc"}}}}'
 
 
 Check the status by watching "oc get pods -n openshift-image-registry"
