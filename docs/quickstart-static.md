@@ -206,7 +206,7 @@ Once booted; press `tab` on the boot menu
 Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
 ```
-ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.ocp4.example.com:ens3:none:192.168.7.77
+ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.ocp4.example.com:enp1s0:none:192.168.7.77
 coreos.inst.install_dev=vda
 coreos.inst.image_url=http://192.168.7.77:8080/install/bios.raw.gz
 coreos.inst.ignition_url=http://192.168.7.77:8080/ignition/bootstrap-static.ign
