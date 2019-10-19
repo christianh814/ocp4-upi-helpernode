@@ -184,53 +184,6 @@ Next, generate the ignition configs
 openshift-install create ignition-configs
 ```
 
-## Set Static IPs
-
-This playbook installs [filetranspiler](https://github.com/ashcrow/filetranspiler) for you. You can use this to set up static IP files and inject them into the ignition files.
-
-You'll need to do this for **ALL** VMs that need it (masters/workers/bootstrap).
-
-Here's an example for bootstrap...
-
-Create your fakeroot dirs
-
-```
-mkdir -p bootstrap/etc/sysconfig/network-scripts/
-```
-
-Next, set up your `ifcfg-INTERFACE` file. In my case my interface is `ens3`
-
-```
-cat <<EOF > bootstrap/etc/sysconfig/network-scripts/ifcfg-ens3
-DEVICE=ens3
-BOOTPROTO=none
-ONBOOT=yes
-IPADDR=192.168.7.20
-NETMASK=255.255.255.0
-GATEWAY=192.168.7.1
-DNS1=192.168.7.77
-PREFIX=24
-DEFROUTE=yes
-IPV6INIT=no
-EOF
-```
-
-Use the ignition file you just created as a basis for an updated one using `filetranspiler`.
-
-```
-filetranspiler -i bootstrap.ign -f bootstrap -o bootstrap-static.ign
-```
-
-> **NOTE** You need to be in the directory where your `bootstrap.ign` file and `bootstrap` dir is in.
-
-Copy this over to your apache serving dir.
-
-```
-cp bootstrap-static.ign /var/www/html/ignition/
-```
-
-**__^ Do this for ALL servers in your cluster!__**
-
 ## Install VMs
 
 Install each VM one by one; here's an example for my boostrap node
@@ -253,13 +206,15 @@ Once booted; press `tab` on the boot menu
 Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
 ```
-ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap:ens3:none:192.168.7.77
+ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.ocp4.example.com:ens3:none:192.168.7.77
 coreos.inst.install_dev=vda
 coreos.inst.image_url=http://192.168.7.77:8080/install/bios.raw.gz
 coreos.inst.ignition_url=http://192.168.7.77:8080/ignition/bootstrap-static.ign
 ```
 
-^ Do this for ALL of your VMs
+^ Do this for **ALL** of your VMs!!!
+
+> **NOTE** Using `ip=...` syntax will set the host with a static IP you provided persistantly. The syntax is `ip=<ipaddress>::<defaultgw>:<netmask>:<hostname>:<iface>:none:<dns server 1>:<dns server 2>`.
 
 Boot/install the VMs in the following order
 
@@ -274,6 +229,9 @@ firefox http://192.168.7.77:9000
 ```
 
 You'll see the bootstrap turn "green" and then the masters turn "green", then the bootstrap turn "red". This is your indication that you can continue.
+
+
+__**WARNING: Current bug (and workaround) for static ips found [here](https://bugzilla.redhat.com/show_bug.cgi?id=1763341)**__
 
 ## Wait for install
 
