@@ -214,7 +214,7 @@ coreos.inst.ignition_url=http://192.168.7.77:8080/ignition/bootstrap-static.ign
 
 ^ Do this for **ALL** of your VMs!!!
 
-> **NOTE** Using `ip=...` syntax will set the host with a static IP you provided persistantly. The syntax is `ip=<ipaddress>::<defaultgw>:<netmask>:<hostname>:<iface>:none:<dns server 1>:<dns server 2>`.
+> **NOTE** Using `ip=...` syntax will set the host with a static IP you provided persistantly. The syntax is `ip=<ipaddress>::<defaultgw>:<netmask>:<hostname>:<iface>:none:<dns server 1>:<dns server 2>`
 
 Boot/install the VMs in the following order
 
