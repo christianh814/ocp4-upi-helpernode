@@ -184,6 +184,13 @@ Next, generate the ignition configs
 openshift-install create ignition-configs
 ```
 
+Finally, copy the ignition files in the `ignition` directory for the websever
+
+```
+cp ~/ocp4/*.ign /var/www/html/ignition/
+restorecon -vR /var/www/html/
+```
+
 ## Install VMs
 
 Install each VM one by one; here's an example for my boostrap node
@@ -194,7 +201,7 @@ Install each VM one by one; here's an example for my boostrap node
 virt-install --name=ocp4-bootstrap --vcpus=4 --ram=8192 \
 --disk path=/var/lib/libvirt/images/ocp4-bootstrap.qcow2,bus=virtio,size=120 \
 --os-variant rhel8.0 --network network=openshift4,model=virtio \
---boot menu=on --cdrom /exports/ISO/rhcos-4.1.0-x86_64-installer.iso
+--boot menu=on --cdrom /exports/ISO/rhcos-4.2.0-x86_64-installer.iso
 ```
 
 > **NOTE** If the console doesn't launch you can open it via `virt-manager`
@@ -206,7 +213,8 @@ Once booted; press `tab` on the boot menu
 Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
 ```
-ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.ocp4.example.com:enp1s0:none:192.168.7.77
+ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.ocp4.example.com:enp1s0:none
+nameserver=192.168.7.77
 coreos.inst.install_dev=vda
 coreos.inst.image_url=http://192.168.7.77:8080/install/bios.raw.gz
 coreos.inst.ignition_url=http://192.168.7.77:8080/ignition/bootstrap-static.ign
@@ -214,7 +222,7 @@ coreos.inst.ignition_url=http://192.168.7.77:8080/ignition/bootstrap-static.ign
 
 ^ Do this for **ALL** of your VMs!!!
 
-> **NOTE** Using `ip=...` syntax will set the host with a static IP you provided persistantly. The syntax is `ip=<ipaddress>::<defaultgw>:<netmask>:<hostname>:<iface>:none:<dns server 1>:<dns server 2>`
+> **NOTE** Using `ip=...` syntax will set the host with a static IP you provided persistantly accross reboots. The syntax is `ip=<ipaddress>::<defaultgw>:<netmask>:<hostname>:<iface>:none`. To set the DNS server use `nameserver=<dnsserver>`. You can use `nameserver=` multiple times.
 
 Boot/install the VMs in the following order
 
@@ -230,9 +238,6 @@ firefox http://192.168.7.77:9000
 
 You'll see the bootstrap turn "green" and then the masters turn "green", then the bootstrap turn "red". This is your indication that you can continue.
 
-
-__**WARNING: Current bug (and workaround) for static ips found [here](https://bugzilla.redhat.com/show_bug.cgi?id=1763341)**__
-
 ## Wait for install
 
 The boostrap VM actually does the install for you; you can track it with the following command.
@@ -244,7 +249,7 @@ openshift-install wait-for bootstrap-complete --log-level debug
 Once you see this message below...
 
 ```
-DEBUG OpenShift Installer v4.1.0-201905212232-dirty 
+DEBUG OpenShift Installer v4.2.0-201905212232-dirty 
 DEBUG Built from commit 71d8978039726046929729ad15302973e3da18ce 
 INFO Waiting up to 30m0s for the Kubernetes API at https://api.ocp4.example.com:6443... 
 INFO API v1.13.4+838b4fa up                       
@@ -263,7 +268,7 @@ First, login to your cluster
 export KUBECONFIG=/root/ocp4/auth/kubeconfig
 ```
 
-Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal))
+Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.2/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal))
 
 ```
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
@@ -303,7 +308,7 @@ openshift-install wait-for install-complete
 
 ## Upgrade
 
-If you didn't install the latest 4.1.Z release...then just run the following
+If you didn't install the latest 4.2.Z release...then just run the following
 
 ```
 oc adm upgrade --to-latest=true

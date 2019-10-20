@@ -62,6 +62,6 @@ You can run this script and it's options to display helpful information about th
 
 ## Install OpenShift 4 UPI
 
-Now you're ready to follow the [OCP4 UPI install doc](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#ssh-agent-using_installing-bare-metal)
+Now you're ready to follow the [OCP4 UPI install doc](https://docs.openshift.com/container-platform/4.2/installing/installing_bare_metal/installing-bare-metal.html#ssh-agent-using_installing-bare-metal)
 
 

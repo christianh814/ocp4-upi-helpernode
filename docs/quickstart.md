@@ -79,7 +79,7 @@ virsh start ocp4-aHelper
 
 ## Create "empty" VMs
 
-Create (but do NOT install) 6 empty VMs. Please follow the [min requirements](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#minimum-resource-requirements_installing-bare-metal) for these VMs. 
+Create (but do NOT install) 6 empty VMs. Please follow the [min requirements](https://docs.openshift.com/container-platform/4.2/installing/installing_bare_metal/installing-bare-metal.html#minimum-resource-requirements_installing-bare-metal) for these VMs. 
 
 > Make sure you attached these to the `openshift4` network!
 
@@ -266,7 +266,7 @@ openshift-install wait-for bootstrap-complete --log-level debug
 Once you see this message below...
 
 ```
-DEBUG OpenShift Installer v4.1.0-201905212232-dirty 
+DEBUG OpenShift Installer v4.2.0-201905212232-dirty 
 DEBUG Built from commit 71d8978039726046929729ad15302973e3da18ce 
 INFO Waiting up to 30m0s for the Kubernetes API at https://api.ocp4.example.com:6443... 
 INFO API v1.13.4+838b4fa up                       
@@ -285,7 +285,7 @@ First, login to your cluster
 export KUBECONFIG=/root/ocp4/auth/kubeconfig
 ```
 
-Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.1/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal))
+Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.2/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal))
 
 ```
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
@@ -325,7 +325,7 @@ openshift-install wait-for install-complete
 
 ## Upgrade
 
-If you didn't install the latest 4.1.Z release...then just run the following
+If you didn't install the latest 4.2.Z release...then just run the following
 
 ```
 oc adm upgrade --to-latest=true
