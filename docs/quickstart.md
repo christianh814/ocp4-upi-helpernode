@@ -206,7 +206,13 @@ First, create the installation manifests
 openshift-install create manifests
 ```
 
-Edit the `manifests/cluster-scheduler-02-config.yml` Kubernetes manifest file to prevent Pods from being scheduled on the control plane machines by setting `mastersSchedulable` to `false`. It should look something like this after you edit it.
+Edit the `manifests/cluster-scheduler-02-config.yml` Kubernetes manifest file to prevent Pods from being scheduled on the control plane machines by setting `mastersSchedulable` to `false`.
+
+```shell
+$ sed -i 's/mastersSchedulable: true/mastersSchedulable: false/g' manifests/cluster-scheduler-02-config.yml
+```
+
+It should look something like this after you edit it.
 
 ```shell
 $ cat manifests/cluster-scheduler-02-config.yml
