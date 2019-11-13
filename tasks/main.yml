@@ -387,19 +387,19 @@
       dest: /usr/local/bin/filetranspiler
       mode: '0555'
 
-  - name: Get network interface name
-    shell: "nmcli con show | tail -1 | awk '{print $1}'"
-    register: networkinterfacename
+  - name: Get network device system name
+    shell: "nmcli -t dev show {{ helper.networkifacename }} | grep GENERAL.CONNECTION | cut -d: -f2"
+    register: devicesystemname
 
-  - name: Setting network interface name as a fact
+  - name: Setting network device system name as a fact
     set_fact:
-      networkifacename: "{{ networkinterfacename.stdout }}"
+      dsname: "{{ devicesystemname.stdout }}"
 
-  - name: Setting DNS server ip on network interface "{{ networkifacename }}" to 127.0.0.1
-    command: "nmcli con mod {{ networkifacename }}  ipv4.dns 127.0.0.1"
+  - name: Setting DNS server ip on network interface "{{ dsname }}" to 127.0.0.1
+    shell: 'nmcli con mod "{{ dsname }}" ipv4.dns 127.0.0.1'
 
-  - name: Setting DNS search path on network interface "{{ helper.networkifacename }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
-    command: "nmcli con mod {{ helper.networkifacename }}  ipv4.dns-search {{ dns.clusterid }}.{{ dns.domain }}"
+  - name: Setting DNS search path on network interface "{{ dsname }}" to "{{ dns.clusterid }}.{{ dns.domain }}"
+    shell: 'nmcli con mod  "{{ dsname }}" ipv4.dns-search {{ dns.clusterid }}.{{ dns.domain }}'
 
   - name: Restarting NetworkManager
     service:
@@ -407,7 +407,7 @@
       state: restarted
     with_items:
       - NetworkManager
-
+ 
   - name:  Information about this install
     debug:
       msg:
