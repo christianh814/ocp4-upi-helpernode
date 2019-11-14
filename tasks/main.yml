@@ -205,13 +205,41 @@
       mode: 0555
     when: not staticips
 
-  - name: Set the default tftp file
-    template:
-      src: ../templates/default.j2
-      dest: /var/lib/tftpboot/pxelinux.cfg/default
-      mode: 0555
-    notify:
-      - restart tftp
+  - name: Generate pxe config files
+    block:
+    - name: Set the default tftp file
+      template:
+        src: ../templates/default.j2
+        dest: /var/lib/tftpboot/pxelinux.cfg/default
+        mode: 0555
+      notify:
+        - restart tftp
+
+    - name: Set the bootstrap specific tftp file
+      template:
+        src: ../templates/pxe-bootstrap.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ bootstrap.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      notify:
+        - restart tftp
+
+    - name: Set the master specific tftp files
+      template:
+        src: ../templates/pxe-master.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ masters }}"
+      notify:
+        - restart tftp
+
+    - name: Set the worker specific tftp files
+      template:
+        src: ../templates/pxe-worker.j2
+        dest: "/var/lib/tftpboot/pxelinux.cfg/01-{{ item.macaddr | regex_replace (':', '-')}}"
+        mode: 0555
+      with_items: "{{ workers }}"
+      notify:
+        - restart tftp
     when: not staticips
 
   - name: Installing TFTP Systemd helper
@@ -379,7 +407,7 @@
       state: restarted
     with_items:
       - NetworkManager
-
+ 
   - name:  Information about this install
     debug:
       msg:
