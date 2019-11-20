@@ -243,9 +243,8 @@ restorecon -vR /var/www/html/
 
 ## Install VMs
 
-Launch `virt-manager`, and boot the VMs into the boot menu; and select PXE. You'll be presented with the following picture.
+Launch `virt-manager`, and boot the VMs into the boot menu; and select PXE. The vms should boot into the proper PXE profile, based on their IP address.
 
-![pxe](images/pxe.png)
 
 Boot/install the VMs in the following order
 
@@ -282,6 +281,7 @@ INFO It is now safe to remove the bootstrap resources
 ```
 
 ...you can continue....at this point you can delete the bootstrap server.
+
 
 ## Finish Install
 
