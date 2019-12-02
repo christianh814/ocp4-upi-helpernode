@@ -49,7 +49,7 @@ Inside that dir there is a [vars.yaml](docs/examples/vars.yaml) file ... **__mod
 Once you edited your `vars.yaml` file; run the playbook
 
 ```
-ansible-playbook -e @vars.yaml tasks/main.yml
+ansible-playbook -e @vars/main.yml tasks/main.yml
 ```
 
 ## Helper Script
