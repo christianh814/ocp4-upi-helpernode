@@ -1,8 +1,8 @@
 ---
 staticips: false
 force_ocp_download: false
-ocp_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.2/latest/rhcos-4.2.0-x86_64-metal-bios.raw.gz"
-ocp_initramfs: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.2/latest/rhcos-4.2.0-x86_64-installer-initramfs.img"
-ocp_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.2/latest/rhcos-4.2.0-x86_64-installer-kernel"
+ocp_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.2/4.2.0/rhcos-4.2.0-x86_64-metal-bios.raw.gz"
+ocp_initramfs: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.2/4.2.0/rhcos-4.2.0-x86_64-installer-initramfs.img"
+ocp_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.2/4.2.0/rhcos-4.2.0-x86_64-installer-kernel"
 ocp_client: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.2.8/openshift-client-linux-4.2.8.tar.gz"
 ocp_installer: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.2.8/openshift-install-linux-4.2.8.tar.gz"
