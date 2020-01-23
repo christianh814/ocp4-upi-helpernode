@@ -239,6 +239,7 @@ Finally, copy the ignition files in the `ignition` directory for the websever
 ```
 cp ~/ocp4/*.ign /var/www/html/ignition/
 restorecon -vR /var/www/html/
+chmod o+r /var/www/html/ignition/*.ign
 ```
 
 ## Install VMs
