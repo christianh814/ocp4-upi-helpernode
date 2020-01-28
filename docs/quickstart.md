@@ -292,7 +292,15 @@ First, login to your cluster
 export KUBECONFIG=/root/ocp4/auth/kubeconfig
 ```
 
-Set up storage for you registry (to use PVs follow [this](https://docs.openshift.com/container-platform/4.2/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal))
+Set the registry for your cluster
+
+First, you have to set the `managementState` to `Managed` for your cluster
+
+```
+oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed"}}'
+```
+
+For PoCs, using `emptyDir` is oka (to use PVs follow [this](https://docs.openshift.com/container-platform/latest/installing/installing_bare_metal/installing-bare-metal.html#registry-configuring-storage-baremetal_installing-bare-metal) doc)
 
 ```
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
@@ -332,7 +340,7 @@ openshift-install wait-for install-complete
 
 ## Upgrade
 
-If you didn't install the latest 4.2.Z release...then just run the following
+If you didn't install the latest 4.3.Z release...then just run the following
 
 ```
 oc adm upgrade --to-latest=true
