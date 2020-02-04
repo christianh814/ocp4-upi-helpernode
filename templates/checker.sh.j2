@@ -82,11 +82,12 @@ echo "======================"
 echo "DNS Config for Others"
 echo "======================"
 echo ""
-egrep --color=none -A {{ (other | lengh) + 1 }} '^; Create entries for the other' /var/named/zonefile.db
+egrep --color=none -A {{ (other | default('') | length) + 1 }} '^; Create entries for the other' /var/named/zonefile.db
 echo ""
 echo "======================"
 echo "DNS Lookup for Others"
 echo "======================"
+{% if other is defined %}
 {% for o in other %}
 echo ""
 echo "{{ o.name }}.{{ dns.clusterid }}.{{ dns.domain }}"
@@ -94,6 +95,7 @@ echo "-------------------------------------------------"
 echo "IP: $(dig @localhost {{ o.name }}.{{ dns.clusterid }}.{{ dns.domain }} +short)"
 echo "Reverse: $(dig @localhost -x $(dig @localhost {{ o.name }}.{{ dns.clusterid }}.{{ dns.domain }} +short) +short)"
 {% endfor %}
+{% endif %}
 }
 ###
 install-info () {

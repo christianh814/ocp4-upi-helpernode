@@ -23,8 +23,10 @@ $TTL 1W
 {{ w.ipaddr.split('.')[3] }}	IN	PTR	{{ w.name }}.{{ dns.clusterid }}.{{ dns.domain }}.
 {% endfor %}
 ;
+{% if other is defined %}
 {% for o in other %}
 {{ o.ipaddr.split('.')[3] }}	IN	PTR	{{ o.name }}.{{ dns.clusterid }}.{{ dns.domain }}.
 {% endfor %}
 ;
+{% endif %}
 ;EOF
