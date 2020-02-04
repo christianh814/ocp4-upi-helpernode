@@ -16,7 +16,7 @@ echo "======================"
 echo "DNS Config for Masters"
 echo "======================"
 echo ""
-egrep --color=none -A {{ (masters | lengh) + 1 }} '^; Create entries for the master hosts' /var/named/zonefile.db
+egrep --color=none -A {{ (masters | length) + 1 }} '^; Create entries for the master hosts' /var/named/zonefile.db
 echo ""
 echo "======================"
 echo "DNS Lookup for Masters"
@@ -35,7 +35,7 @@ echo "======================"
 echo "DNS Config for Workers"
 echo "======================"
 echo ""
-egrep --color=none -A {{ (workers | lengh) + 1 }} '^; Create entries for the worker' /var/named/zonefile.db
+egrep --color=none -A {{ (workers | length) + 1 }} '^; Create entries for the worker' /var/named/zonefile.db
 echo ""
 echo "======================"
 echo "DNS Lookup for Workers"
