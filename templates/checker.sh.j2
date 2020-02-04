@@ -82,7 +82,7 @@ echo "======================"
 echo "DNS Config for Others"
 echo "======================"
 echo ""
-egrep --color=none -A {{ (other | default('') | length) + 1 }} '^; Create entries for the other' /var/named/zonefile.db
+egrep --color=none -A {{ (other | default([]) | length) + 1 }} '^; Create entries for the other' /var/named/zonefile.db
 echo ""
 echo "======================"
 echo "DNS Lookup for Others"
